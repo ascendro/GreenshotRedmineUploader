@@ -46,7 +46,12 @@ namespace GreenshotRedmineUploader
 		
 		private RedmineManager getManager() {
 			if (manager == null) {
-				manager = new RedmineManager(buffer.host, buffer.apikey);
+				try {
+					manager = new RedmineManager(buffer.host, buffer.apikey);
+				} catch (Redmine.Net.Api.RedmineException e) {
+					MessageBox.Show(e.Message,"Connection Error.");
+					manager = null;
+				}
 			}
 			return manager;			
 		}
@@ -113,7 +118,7 @@ namespace GreenshotRedmineUploader
 			Hashtable assigneeList = new Hashtable();
 			try {
 				var parameters = new NameValueCollection {{"project_id", projectId}};
-				foreach (var member in manager.GetObjectList<ProjectMembership>(parameters))
+				foreach (var member in getManager().GetObjectList<ProjectMembership>(parameters))
 	            {
 					if (member.User != null) {
 						assigneeList.Add(member.User.Name,member.User.Id);
