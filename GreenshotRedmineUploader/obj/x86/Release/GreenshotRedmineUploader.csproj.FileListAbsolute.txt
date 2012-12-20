@@ -1,0 +1,6 @@
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\bin\Release\GreenshotRedmineUploader.exe
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\bin\Release\Redmine.Net.Api.dll
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Release\GreenshotRedmineUploader.csprojResolveAssemblyReference.cache
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Release\GreenshotRedmineUploader.exe
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\bin\Release\GreenshotRedmineUploader.pdb
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Release\GreenshotRedmineUploader.pdb

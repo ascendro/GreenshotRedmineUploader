@@ -63,28 +63,44 @@ namespace GreenshotRedmineUploader
 			this.redmineHost.Text = Program.redmine.buffer.host;
 			        	
             projectListBS.DataSource = Program.redmine.buffer.projects;
-			this.redmineDefaultProject.DataSource = projectListBS;		
-			this.redmineDefaultProject.ValueMember = "Value";
-            this.redmineDefaultProject.DisplayMember = "Key";
-            this.redmineDefaultProject.SelectedValue = Program.redmine.buffer.defaultProject;
+			this.redmineDefaultProject.DataSource = projectListBS;	
+			try {			
+				this.redmineDefaultProject.ValueMember = "Value";
+	            this.redmineDefaultProject.DisplayMember = "Key";
+	            this.redmineDefaultProject.SelectedValue = Program.redmine.buffer.defaultProject;
+            } catch (Exception) {
+        		this.redmineDefaultProject.DataSource = null;
+        	}
             
             trackerListBS.DataSource = Program.redmine.buffer.trackers;
-			this.redmineDefaultTracker.DataSource = trackerListBS;		
-			this.redmineDefaultTracker.ValueMember = "Value";
-            this.redmineDefaultTracker.DisplayMember = "Key";
-            this.redmineDefaultTracker.SelectedValue = Program.redmine.buffer.defaultTracker;
+			this.redmineDefaultTracker.DataSource = trackerListBS;	
+			try {			
+				this.redmineDefaultTracker.ValueMember = "Value";
+	            this.redmineDefaultTracker.DisplayMember = "Key";
+	            this.redmineDefaultTracker.SelectedValue = Program.redmine.buffer.defaultTracker;
+            } catch (Exception) {
+        		this.redmineDefaultTracker.DataSource = null;
+        	}
 
             priorityListBS.DataSource = Program.redmine.buffer.priorities;
-			this.redmineDefaultPriority.DataSource = priorityListBS;		
-			this.redmineDefaultPriority.ValueMember = "Value";
-            this.redmineDefaultPriority.DisplayMember = "Key";          
-            this.redmineDefaultPriority.SelectedValue = Program.redmine.buffer.defaultPriority;
+            this.redmineDefaultPriority.DataSource = priorityListBS;
+			try {						
+	            this.redmineDefaultPriority.ValueMember = "Value";
+	            this.redmineDefaultPriority.DisplayMember = "Key";          
+	            this.redmineDefaultPriority.SelectedValue = Program.redmine.buffer.defaultPriority;
+            } catch (Exception) {
+        		this.redmineDefaultPriority.DataSource = null;
+        	}
             
             statusesListBS.DataSource = Program.redmine.buffer.statuses;
 			this.redmineDefaultStatus.DataSource = statusesListBS;		
-			this.redmineDefaultStatus.ValueMember = "Value";
-            this.redmineDefaultStatus.DisplayMember = "Key";
-            this.redmineDefaultStatus.SelectedValue = Program.redmine.buffer.defaultStatus;
+			try {
+				this.redmineDefaultStatus.ValueMember = "Value";
+	            this.redmineDefaultStatus.DisplayMember = "Key";
+	            this.redmineDefaultStatus.SelectedValue = Program.redmine.buffer.defaultStatus;
+            } catch (Exception) {
+        		this.redmineDefaultStatus.DataSource = null;
+        	}
             
             this.redmineDefaultSubject.Text = Program.redmine.buffer.defaultSubject;
             
@@ -152,6 +168,9 @@ namespace GreenshotRedmineUploader
         	//Discarding but we already changed things, so reread the settings from the file
         	if (syncedWithRedmine) {
         		Program.redmine.buffer = RedmineDataBuffer.Read();
+        		if (Program.redmine.buffer == null) {
+        			Program.redmine.buffer = new RedmineDataBuffer();
+        		}
         	}
         	this.Enabled = true;
  			this.Close();

@@ -37,7 +37,18 @@ namespace GreenshotRedmineUploader
 		public RedmineSettings()
 		{
 			buffer = RedmineDataBuffer.Read();
-			manager = new RedmineManager(buffer.host, buffer.apikey);
+			if (buffer == null) {
+				//means no settings where saved until now...
+				buffer = new RedmineDataBuffer();
+			}
+			manager = null;
+		}
+		
+		private RedmineManager getManager() {
+			if (manager == null) {
+				manager = new RedmineManager(buffer.host, buffer.apikey);
+			}
+			return manager;			
 		}
 				
 		public bool syncWithRed() {
@@ -49,14 +60,14 @@ namespace GreenshotRedmineUploader
 			
 			try {
 				var parameters = new NameValueCollection {{"include", "memberships"}};
-				var currentUser = manager.GetCurrentUser(parameters);				
+				var currentUser = getManager().GetCurrentUser(parameters);				
 				foreach (var membership in currentUser.Memberships) {
 					buffer.projects.Add(membership.Project.Name,membership.Project.Id);            								
 				}		
 				
 				
 				parameters = new NameValueCollection {};
-	            foreach (var tracker in manager.GetObjectList<Tracker>(parameters))
+	            foreach (var tracker in getManager().GetObjectList<Tracker>(parameters))
 	            {
 	            	buffer.trackers.Add(tracker.Name,tracker.Id);
 	            }
@@ -70,7 +81,7 @@ namespace GreenshotRedmineUploader
 	            buffer.priorities.Add("Default",0);
 	                      
 				parameters = new NameValueCollection {};
-	            foreach (var status in manager.GetObjectList<IssueStatus>(parameters))
+	            foreach (var status in getManager().GetObjectList<IssueStatus>(parameters))
 	            {
 	            	buffer.statuses.Add(status.Name,status.Id);            	
 	            }
@@ -90,7 +101,7 @@ namespace GreenshotRedmineUploader
 		public Hashtable getIssueAssigneeList(string issueId) {	
 			var parameters = new NameValueCollection {};
 			try {
-		 		var issue = manager.GetObject<Issue>(issueId,parameters);
+		 		var issue = getManager().GetObject<Issue>(issueId,parameters);
 		 		return getProjectAssigneeList(issue.Project.Id.ToString());
 			} catch (Redmine.Net.Api.RedmineException e) {
 				MessageBox.Show(e.Message,"Error while checking issue.");
@@ -119,24 +130,24 @@ namespace GreenshotRedmineUploader
 		
 		public Upload uploadFile(string filename) {
 			//Upload data is not attaching any authorisation keys... so we need to implement it by ourself.
-			return manager.UploadData(FileToByteArray(filename));
+			return getManager().UploadData(FileToByteArray(filename));
 		}
 		
 		public Issue getIssue(string Id) {
 			var parameters = new NameValueCollection {{"include","journals,changesets"}};
-			return manager.GetObject<Issue>(Id,parameters);
+			return getManager().GetObject<Issue>(Id,parameters);
 		}
 		
 		public Issue createIssue(Issue issue) {
-			return manager.CreateObject<Issue>(issue);
+			return getManager().CreateObject<Issue>(issue);
 		}
 		
 		public Journal createJournal(Journal journal,Issue issue) {
-			return manager.CreateObject<Journal>(journal);
+			return getManager().CreateObject<Journal>(journal);
 		}
 		   
 		public void updateIssue(Issue issue) {
-			manager.UpdateObject<Issue>(issue.Id.ToString(),issue);
+			getManager().UpdateObject<Issue>(issue.Id.ToString(),issue);
 		}
 		
         /// <summary>

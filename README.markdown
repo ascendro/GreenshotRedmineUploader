@@ -9,6 +9,7 @@ The tool can be used as standalone and doesnt need an installation. Still theres
 necessary to integrate it into Greenshot.
 
 Compile or place the executable from GreenshotRedmineUploader/bin/...exe on a suitable place on your computer.
+(Dont forget the DLL file Redmine.Net.Api.dll - it has to stay next to the executable)
 Configure the "External command Plugin" and add a new Item "RedmineUploader" with the following settings:
 
 Command: Path to the executable

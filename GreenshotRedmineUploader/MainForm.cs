@@ -96,33 +96,54 @@ namespace GreenshotRedmineUploader
         
         private void connectDataSources() {
             projectListBS.DataSource = Program.redmine.buffer.projects;
-			this.projectList.DataSource = projectListBS;		
-			this.projectList.ValueMember = "Value";
-            this.projectList.DisplayMember = "Key";
-            this.projectList.SelectedValue = Program.redmine.buffer.defaultProject;
+			this.projectList.DataSource = projectListBS;
+			try { 			
+				this.projectList.ValueMember = "Value";
+	            this.projectList.DisplayMember = "Key";
+	            this.projectList.SelectedValue = Program.redmine.buffer.defaultProject;
+	        } catch (Exception) {
+        		this.projectList.DataSource = null;
+        	}
             
             trackerListBS.DataSource = Program.redmine.buffer.trackers;
 			this.issueTracker.DataSource = trackerListBS;		
-			this.issueTracker.ValueMember = "Value";
-            this.issueTracker.DisplayMember = "Key";
-            this.issueTracker.SelectedValue = Program.redmine.buffer.defaultTracker;
+			try { 			
+				this.issueTracker.ValueMember = "Value";
+	            this.issueTracker.DisplayMember = "Key";
+	            this.issueTracker.SelectedValue = Program.redmine.buffer.defaultTracker;
+	        } catch (Exception) {
+        		this.issueTracker.DataSource = null;
+        	}
 
             priorityListBS.DataSource = Program.redmine.buffer.priorities;
 			this.issuePriority.DataSource = priorityListBS;		
-			this.issuePriority.ValueMember = "Value";
-            this.issuePriority.DisplayMember = "Key";          
-            this.issuePriority.SelectedValue = Program.redmine.buffer.defaultPriority;
-			this.oldissuePriority.DataSource = priorityListBS;		
-			this.oldissuePriority.ValueMember = "Value";
-            this.oldissuePriority.DisplayMember = "Key";
-            this.oldissuePriority.SelectedValue = Program.redmine.buffer.defaultPriority;
-            
+			try { 			
+				this.issuePriority.ValueMember = "Value";
+	            this.issuePriority.DisplayMember = "Key";          
+	            this.issuePriority.SelectedValue = Program.redmine.buffer.defaultPriority;				
+	        } catch (Exception) {
+        		this.issuePriority.DataSource = null;
+        	}
+			
+			this.oldissuePriority.DataSource = priorityListBS;	
+			try { 			
+				this.oldissuePriority.ValueMember = "Value";
+	            this.oldissuePriority.DisplayMember = "Key";
+	            this.oldissuePriority.SelectedValue = Program.redmine.buffer.defaultPriority;
+  	        } catch (Exception) {
+        		this.oldissuePriority.DataSource = null;
+        	}
+          
             statusesListBS.DataSource = Program.redmine.buffer.statuses;
 			this.oldissueStatus.DataSource = statusesListBS;		
-			this.oldissueStatus.ValueMember = "Value";
-            this.oldissueStatus.DisplayMember = "Key";
-            this.oldissueStatus.SelectedValue = Program.redmine.buffer.defaultStatus;
-            
+			try { 			
+				this.oldissueStatus.ValueMember = "Value";
+	            this.oldissueStatus.DisplayMember = "Key";
+	            this.oldissueStatus.SelectedValue = Program.redmine.buffer.defaultStatus;
+  	        } catch (Exception) {
+        		this.oldissueStatus.DataSource = null;
+        	}
+          
             this.issueSubject.Text = Program.redmine.buffer.defaultSubject;
               	
         }  

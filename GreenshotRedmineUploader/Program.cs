@@ -41,6 +41,7 @@ namespace GreenshotRedmineUploader
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+			Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
 			redmine = new RedmineSettings();						
 			mainForm = new MainForm();
 			if (args.Length > 0)
