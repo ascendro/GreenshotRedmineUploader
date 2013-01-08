@@ -44,6 +44,10 @@ namespace GreenshotRedmineUploader
 			manager = null;
 		}
 		
+		public void resetConnection() {
+			manager = null;			
+		}
+		
 		private RedmineManager getManager() {
 			if (manager == null) {
 				try {

@@ -466,7 +466,7 @@ namespace GreenshotRedmineUploader
             this.Controls.Add(this.filename);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.settings);
-            this.Text = "Ascendro S.R.L - GreenshotRedmineUploader";
+            this.Text = "Ascendro S.R.L - GreenshotRedmineUploader V0.0.2";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

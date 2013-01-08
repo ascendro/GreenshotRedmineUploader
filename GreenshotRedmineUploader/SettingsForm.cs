@@ -26,6 +26,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Collections.Generic;
 
 namespace GreenshotRedmineUploader
 {
@@ -61,8 +62,9 @@ namespace GreenshotRedmineUploader
         private void connectDataSources() {
         	this.redmineAPIKey.Text = Program.redmine.buffer.apikey;
 			this.redmineHost.Text = Program.redmine.buffer.host;
-			        	
-            projectListBS.DataSource = Program.redmine.buffer.projects;
+			
+			projectListBS.DataSource = typeof(List<int>);			
+            projectListBS.DataSource = Program.redmine.buffer.projects;            
 			this.redmineDefaultProject.DataSource = projectListBS;	
 			try {			
 				this.redmineDefaultProject.ValueMember = "Value";
@@ -71,7 +73,9 @@ namespace GreenshotRedmineUploader
             } catch (Exception) {
         		this.redmineDefaultProject.DataSource = null;
         	}
+		
             
+			trackerListBS.DataSource = typeof(List<int>);
             trackerListBS.DataSource = Program.redmine.buffer.trackers;
 			this.redmineDefaultTracker.DataSource = trackerListBS;	
 			try {			
@@ -82,6 +86,7 @@ namespace GreenshotRedmineUploader
         		this.redmineDefaultTracker.DataSource = null;
         	}
 
+			priorityListBS.DataSource = typeof(List<int>);	
             priorityListBS.DataSource = Program.redmine.buffer.priorities;
             this.redmineDefaultPriority.DataSource = priorityListBS;
 			try {						
@@ -92,6 +97,7 @@ namespace GreenshotRedmineUploader
         		this.redmineDefaultPriority.DataSource = null;
         	}
             
+            statusesListBS.DataSource = typeof(List<int>);	
             statusesListBS.DataSource = Program.redmine.buffer.statuses;
 			this.redmineDefaultStatus.DataSource = statusesListBS;		
 			try {
@@ -105,11 +111,13 @@ namespace GreenshotRedmineUploader
             this.redmineDefaultSubject.Text = Program.redmine.buffer.defaultSubject;
             
             this.redmineCloseAfterUpload.Checked = Program.redmine.buffer.closeAfterUpload;
+            
         }  
         
         private void storeData() {
         	Program.redmine.buffer.apikey = this.redmineAPIKey.Text;
         	Program.redmine.buffer.host = this.redmineHost.Text;
+        	Program.redmine.resetConnection();
 			        	
         	if (this.redmineDefaultProject.SelectedValue != null) {
         		Program.redmine.buffer.defaultProject = (int)this.redmineDefaultProject.SelectedValue;
@@ -144,7 +152,10 @@ namespace GreenshotRedmineUploader
         	if (Program.redmine.syncWithRed()) {
         		connectDataSources();
         		MessageBox.Show("Succesfully synced with Redmine!","Success!");
-        	} 
+        	} else {
+        		connectDataSources();
+        		MessageBox.Show("Error while syncing with Redmine!","Error");
+        	}        	
         	syncedWithRedmine = true;
         	this.Enabled = true;
         }
