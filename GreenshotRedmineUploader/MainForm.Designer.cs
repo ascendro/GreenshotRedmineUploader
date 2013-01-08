@@ -51,6 +51,8 @@ namespace GreenshotRedmineUploader
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.filename = new System.Windows.Forms.TextBox();
+            this.labelDesc = new System.Windows.Forms.Label();
+            this.description = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.filesource = new System.Windows.Forms.TextBox();
@@ -61,6 +63,7 @@ namespace GreenshotRedmineUploader
             this.issueTracker = new System.Windows.Forms.ComboBox();
             this.issueParent = new System.Windows.Forms.ComboBox();
             this.issueDescription = new System.Windows.Forms.TextBox();
+            this.issueNote = new System.Windows.Forms.TextBox();
             this.issueSubject = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -73,6 +76,7 @@ namespace GreenshotRedmineUploader
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.labelNoteDesc = new System.Windows.Forms.Label();
             this.oldissueUpload = new System.Windows.Forms.Button();
             this.oldissuePriority = new System.Windows.Forms.ComboBox();
             this.oldissueAssignee = new System.Windows.Forms.ComboBox();
@@ -178,6 +182,24 @@ namespace GreenshotRedmineUploader
             this.filename.Name = "filename";
             this.filename.Size = new System.Drawing.Size(852, 20);
             this.filename.TabIndex = 10;
+            // 
+            // labelDesc
+            // 
+            this.labelDesc.AutoSize = true;
+            this.labelDesc.Location = new System.Drawing.Point(12, 100);
+            this.labelDesc.Name = "labelDesc";
+            this.labelDesc.Size = new System.Drawing.Size(52, 13);
+            this.labelDesc.TabIndex = 9;
+            this.labelDesc.Text = "Description:";
+            // 
+            // description
+            // 
+            this.description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.description.Location = new System.Drawing.Point(74, 97);
+            this.description.Name = "description";
+            this.description.Size = new System.Drawing.Size(852, 20);
+            this.description.TabIndex = 11;
             // 
             // label10
             // 
@@ -292,6 +314,15 @@ namespace GreenshotRedmineUploader
             this.label9.TabIndex = 4;
             this.label9.Text = "Description:";
             // 
+            // labelNoteDesc
+            // 
+            this.labelNoteDesc.AutoSize = true;
+            this.labelNoteDesc.Location = new System.Drawing.Point(8, 138);
+            this.labelNoteDesc.Name = "labelNoteDesc";
+            this.labelNoteDesc.Size = new System.Drawing.Size(63, 13);
+            this.labelNoteDesc.TabIndex = 4;
+            this.labelNoteDesc.Text = "Note:";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -335,10 +366,10 @@ namespace GreenshotRedmineUploader
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(15, 93);
+            this.tabControl1.Location = new System.Drawing.Point(15, 133);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(911, 330);
+            this.tabControl1.Size = new System.Drawing.Size(911, 300);
             this.tabControl1.TabIndex = 16;
             // 
             // tabPage1
@@ -378,6 +409,8 @@ namespace GreenshotRedmineUploader
             this.tabPage2.Controls.Add(this.oldissueID);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.labelNoteDesc);            
+            this.tabPage2.Controls.Add(this.issueNote);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -452,7 +485,18 @@ namespace GreenshotRedmineUploader
             this.oldissueStatus.Location = new System.Drawing.Point(63, 98);
             this.oldissueStatus.Name = "oldissueStatus";
             this.oldissueStatus.Size = new System.Drawing.Size(830, 21);
-            this.oldissueStatus.TabIndex = 14;            
+            this.oldissueStatus.TabIndex = 14;   
+			// 
+            // issueNote
+            // 
+            this.issueNote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.issueNote.Location = new System.Drawing.Point(11, 154);
+            this.issueNote.Multiline = true;
+            this.issueNote.Name = "issueNote";
+            this.issueNote.Size = new System.Drawing.Size(877, 104);
+            this.issueNote.TabIndex = 15;            
             // 
             // Form1
             // 
@@ -466,6 +510,8 @@ namespace GreenshotRedmineUploader
             this.Controls.Add(this.filename);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.settings);
+            this.Controls.Add(this.labelDesc);
+            this.Controls.Add(this.description);
             this.Text = "Ascendro S.R.L - GreenshotRedmineUploader V0.0.2";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
@@ -489,6 +535,8 @@ namespace GreenshotRedmineUploader
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox filename;
+        private System.Windows.Forms.Label labelDesc;
+        private System.Windows.Forms.TextBox description;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox filesource;
@@ -499,6 +547,7 @@ namespace GreenshotRedmineUploader
         private System.Windows.Forms.ComboBox issueTracker;
         private System.Windows.Forms.ComboBox issueParent;
         private System.Windows.Forms.TextBox issueDescription;
+        private System.Windows.Forms.TextBox issueNote;
         private System.Windows.Forms.TextBox issueSubject;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -511,6 +560,7 @@ namespace GreenshotRedmineUploader
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label labelNoteDesc;
         private System.Windows.Forms.Button oldissueUpload;
         private System.Windows.Forms.ComboBox oldissuePriority;
         private System.Windows.Forms.ComboBox oldissueAssignee;

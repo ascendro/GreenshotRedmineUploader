@@ -190,6 +190,7 @@ namespace GreenshotRedmineUploader
         		
         		upload.FileName = this.filename.Text;
         		upload.ContentType = "application/octet-stream";
+        		upload.Description = this.description.Text;
         		IList<Upload> uploads = new List<Upload>();
         		uploads.Add(upload);
         		
@@ -230,6 +231,7 @@ namespace GreenshotRedmineUploader
         		
         		upload.FileName = this.filename.Text;
         		upload.ContentType = "application/octet-stream";
+        		upload.Description = this.description.Text;
         		   	
         		var updateIssue = Program.redmine.getIssue(this.oldissueID.Text);
         		
@@ -237,7 +239,9 @@ namespace GreenshotRedmineUploader
         			updateIssue.Uploads = new List<Upload>();
         		} 
         		updateIssue.Uploads.Add(upload);
-          		
+        		if (this.issueNote.Text.Length > 0) {
+        			updateIssue.UpdateNote = this.issueNote.Text;
+        		}
         		
 
         		if (oldissuePriority.SelectedValue != null && (int)oldissuePriority.SelectedValue != 0 ) {

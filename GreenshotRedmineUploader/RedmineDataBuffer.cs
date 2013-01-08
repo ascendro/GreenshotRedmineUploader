@@ -46,6 +46,8 @@ namespace GreenshotRedmineUploader
 		public Hashtable trackers;
 		public Hashtable statuses;
 		public Hashtable users;
+		public Hashtable issues;
+		public Hashtable currentIssues;
 		public int defaultProject;
 		public int defaultTracker;
 		public int defaultPriority;
@@ -58,7 +60,9 @@ namespace GreenshotRedmineUploader
 			projects = new Hashtable();
 			priorities = new Hashtable();
 			trackers = new Hashtable();
-			statuses = new Hashtable();
+			issues = new Hashtable();
+			trackers = new Hashtable();
+			currentIssues = new Hashtable();
 			defaultProject = 0;
 			defaultTracker = 0;
 			defaultPriority = 0;
