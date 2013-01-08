@@ -59,6 +59,7 @@ namespace GreenshotRedmineUploader
             this.issuePriority = new System.Windows.Forms.ComboBox();
             this.issueAssignee = new System.Windows.Forms.ComboBox();
             this.issueTracker = new System.Windows.Forms.ComboBox();
+            this.issueParent = new System.Windows.Forms.ComboBox();
             this.issueDescription = new System.Windows.Forms.TextBox();
             this.issueSubject = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -251,6 +252,16 @@ namespace GreenshotRedmineUploader
             this.issueTracker.Name = "issueTracker";
             this.issueTracker.Size = new System.Drawing.Size(830, 21);
             this.issueTracker.TabIndex = 7;
+            // 
+            // issueParent
+            //             
+            this.issueParent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.issueParent.FormattingEnabled = true;
+            this.issueParent.Location = new System.Drawing.Point(65, 63);
+            this.issueParent.Name = "issueTracker";
+            this.issueParent.Size = new System.Drawing.Size(830, 21);
+            this.issueParent.TabIndex = 7;
             // 
             // issueDescription
             // 
@@ -486,6 +497,7 @@ namespace GreenshotRedmineUploader
         private System.Windows.Forms.ComboBox issuePriority;
         private System.Windows.Forms.ComboBox issueAssignee;
         private System.Windows.Forms.ComboBox issueTracker;
+        private System.Windows.Forms.ComboBox issueParent;
         private System.Windows.Forms.TextBox issueDescription;
         private System.Windows.Forms.TextBox issueSubject;
         private System.Windows.Forms.Label label9;
