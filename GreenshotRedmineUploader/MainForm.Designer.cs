@@ -1,4 +1,5 @@
-﻿/*
+﻿using System.Windows.Forms;
+/*
  * Created by SharpDevelop.
  * User: Michael Kling - Ascendro S.R.L
  * Date: 19.12.2012
@@ -45,15 +46,14 @@ namespace GreenshotRedmineUploader
 			
             this.projectList = new System.Windows.Forms.ComboBox();
             this.settings = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.oldissueID = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelProject = new System.Windows.Forms.Label();
+            this.labelOldIssue = new System.Windows.Forms.Label();
+            this.labelOldIssueIdSign = new System.Windows.Forms.Label();
+            this.labelFilename = new System.Windows.Forms.Label();
             this.filename = new System.Windows.Forms.TextBox();
             this.labelDesc = new System.Windows.Forms.Label();
             this.description = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.labelFile = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.filesource = new System.Windows.Forms.TextBox();
             this.openFile = new System.Windows.Forms.Button();
@@ -61,21 +61,20 @@ namespace GreenshotRedmineUploader
             this.issuePriority = new System.Windows.Forms.ComboBox();
             this.issueAssignee = new System.Windows.Forms.ComboBox();
             this.issueTracker = new System.Windows.Forms.ComboBox();
-            this.issueParent = new System.Windows.Forms.ComboBox();
             this.issueDescription = new System.Windows.Forms.TextBox();
             this.issueNote = new System.Windows.Forms.TextBox();
             this.issueSubject = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelIssueDescription = new System.Windows.Forms.Label();
+            this.labelPriority = new System.Windows.Forms.Label();
+            this.labelAssignee = new System.Windows.Forms.Label();
+            this.labelTracker = new System.Windows.Forms.Label();
+            this.labelSubject = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.labelOldIssuePriority = new System.Windows.Forms.Label();
+            this.labelOldIssueAssignee = new System.Windows.Forms.Label();
+            this.labelOldIssueStatus = new System.Windows.Forms.Label();
             this.labelNoteDesc = new System.Windows.Forms.Label();
             this.oldissueUpload = new System.Windows.Forms.Button();
             this.oldissuePriority = new System.Windows.Forms.ComboBox();
@@ -85,30 +84,18 @@ namespace GreenshotRedmineUploader
             this.projectAssigneeListUpdate = new System.Windows.Forms.Button();
         	this.issueAssigneeListUpdate = new System.Windows.Forms.Button();
             
+        	this.labelParent = new System.Windows.Forms.Label();
+	        this.newIssueSync = new System.Windows.Forms.Button();
+	        this.oldIssueSync = new System.Windows.Forms.Button();
+	        this.parentIssue = new System.Windows.Forms.ComboBox();
+	        this.oldIssue = new System.Windows.Forms.ComboBox();
+        	
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // projectList
-            // 
-            this.projectList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.projectList.FormattingEnabled = true;
-            this.projectList.Location = new System.Drawing.Point(65, 6);
-            this.projectList.Name = "projectList";
-            this.projectList.Size = new System.Drawing.Size(760, 21);
-            this.projectList.TabIndex = 1;
-            // 
-            // projectAssigneeListUpdate
-            // 
-            this.projectAssigneeListUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.projectAssigneeListUpdate.Location = new System.Drawing.Point(825, 4);
-            this.projectAssigneeListUpdate.Name = "projectAssigneeListUpdate";
-            this.projectAssigneeListUpdate.Size = new System.Drawing.Size(75, 23);
-            this.projectAssigneeListUpdate.Text = "Get Userlist";
-            this.projectAssigneeListUpdate.UseVisualStyleBackColor = true;            
-            this.projectAssigneeListUpdate.Click += new System.EventHandler(this.projectAssigneeListUpdate_Click);
+            
+            
             // 
             // settings
             // 
@@ -116,103 +103,18 @@ namespace GreenshotRedmineUploader
             this.settings.Location = new System.Drawing.Point(848, 12);
             this.settings.Name = "settings";
             this.settings.Size = new System.Drawing.Size(75, 23);
-            this.settings.TabIndex = 2;
+            this.settings.TabIndex = 30;
             this.settings.Text = "Settings";
             this.settings.UseVisualStyleBackColor = true;
             this.settings.Click += new System.EventHandler(this.settings_Click);
             // 
-            // label1
+            // labelFile
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Project:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Issue:";
-            // 
-            // oldissueID
-            // 
-            this.oldissueID.Location = new System.Drawing.Point(84, 6);
-            this.oldissueID.Name = "oldissueID";
-            this.oldissueID.Size = new System.Drawing.Size(60, 20);
-            this.oldissueID.TabIndex = 6;
-            // 
-            // issueAssigneeListUpdate
-            // 
-            this.issueAssigneeListUpdate.Location = new System.Drawing.Point(154, 4);
-            this.issueAssigneeListUpdate.Name = "issueAssigneeListUpdate";
-            this.issueAssigneeListUpdate.Size = new System.Drawing.Size(145, 23);
-            this.issueAssigneeListUpdate.Text = "Check and get Userlist";
-            this.issueAssigneeListUpdate.UseVisualStyleBackColor = true;            
-            this.issueAssigneeListUpdate.Click += new System.EventHandler(this.issueAssigneeListUpdate_Click);
-            // 
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(64, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(14, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "#";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 70);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Filename:";
-            // 
-            // filename
-            // 
-            this.filename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.filename.Location = new System.Drawing.Point(74, 67);
-            this.filename.Name = "filename";
-            this.filename.Size = new System.Drawing.Size(852, 20);
-            this.filename.TabIndex = 10;
-            // 
-            // labelDesc
-            // 
-            this.labelDesc.AutoSize = true;
-            this.labelDesc.Location = new System.Drawing.Point(12, 100);
-            this.labelDesc.Name = "labelDesc";
-            this.labelDesc.Size = new System.Drawing.Size(52, 13);
-            this.labelDesc.TabIndex = 9;
-            this.labelDesc.Text = "Description:";
-            // 
-            // description
-            // 
-            this.description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.description.Location = new System.Drawing.Point(74, 97);
-            this.description.Name = "description";
-            this.description.Size = new System.Drawing.Size(852, 20);
-            this.description.TabIndex = 11;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 44);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(26, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "File:";
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.labelFile.AutoSize = true;
+            this.labelFile.Location = new System.Drawing.Point(12, 44);
+            this.labelFile.Name = "label10";
+            this.labelFile.Size = new System.Drawing.Size(26, 13);	
+            this.labelFile.Text = "File:";
             // 
             // filesource
             // 
@@ -222,6 +124,10 @@ namespace GreenshotRedmineUploader
             this.filesource.Name = "filesource";
             this.filesource.Size = new System.Drawing.Size(768, 20);
             this.filesource.TabIndex = 13;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // openFile
             // 
@@ -234,6 +140,209 @@ namespace GreenshotRedmineUploader
             this.openFile.UseVisualStyleBackColor = true;
             this.openFile.Click += new System.EventHandler(this.openFile_Click);
             // 
+            // labelFilename
+            // 
+            this.labelFilename.AutoSize = true;
+            this.labelFilename.Location = new System.Drawing.Point(12, 70);
+            this.labelFilename.Name = "label4";
+            this.labelFilename.Size = new System.Drawing.Size(52, 13);
+            this.labelFilename.Text = "Filename:";
+            // 
+            // filename
+            // 
+            this.filename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.filename.Location = new System.Drawing.Point(74, 67);
+            this.filename.Name = "filename";
+            this.filename.Size = new System.Drawing.Size(852, 20);
+            this.filename.TabIndex = 10;
+			// 
+            // labelDesc
+            // 
+            this.labelDesc.AutoSize = true;
+            this.labelDesc.Location = new System.Drawing.Point(12, 100);
+            this.labelDesc.Name = "labelDesc";
+            this.labelDesc.Size = new System.Drawing.Size(52, 13);
+            this.labelDesc.Text = "Description:";
+            // 
+            // description
+            // 
+            this.description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.description.Location = new System.Drawing.Point(74, 97);
+            this.description.Name = "description";
+            this.description.Size = new System.Drawing.Size(852, 20);
+            this.description.TabIndex = 11;    
+            
+            
+            //TAB PAGE 1 ###################################################################################################
+            
+            // 
+            // labelProject
+            // 
+            this.labelProject.AutoSize = true;
+            this.labelProject.Location = new System.Drawing.Point(8, 9);
+            this.labelProject.Name = "label1";
+            this.labelProject.Size = new System.Drawing.Size(43, 13);
+            this.labelProject.Text = "Project:";
+            // 
+            // projectList
+            // 
+            this.projectList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.projectList.FormattingEnabled = true;
+            this.projectList.Location = new System.Drawing.Point(65, 6);
+            this.projectList.Name = "projectList";
+            this.projectList.Size = new System.Drawing.Size(760, 21);
+            this.projectList.TabIndex = 1;
+            this.projectList.AutoCompleteMode = AutoCompleteMode.Suggest;
+            this.projectList.AutoCompleteSource = AutoCompleteSource.ListItems;   
+			this.projectList.SelectedIndexChanged += new System.EventHandler(projectList_SelectedIndexChanged);            
+            // 
+            // projectAssigneeListUpdate
+            // 
+            this.projectAssigneeListUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.projectAssigneeListUpdate.Location = new System.Drawing.Point(825, 4);
+            this.projectAssigneeListUpdate.Name = "projectAssigneeListUpdate";
+            this.projectAssigneeListUpdate.Size = new System.Drawing.Size(75, 23);
+            this.projectAssigneeListUpdate.Text = "Get Userlist";
+            this.projectAssigneeListUpdate.UseVisualStyleBackColor = true;   
+			this.projectAssigneeListUpdate.TabIndex = 2;            
+            this.projectAssigneeListUpdate.Click += new System.EventHandler(this.projectAssigneeListUpdate_Click);
+            
+            // 
+            // labelSubject
+            // 
+            this.labelSubject.AutoSize = true;
+            this.labelSubject.Location = new System.Drawing.Point(8, 40);
+            this.labelSubject.Name = "labelSubject";
+            this.labelSubject.Size = new System.Drawing.Size(46, 13);
+            this.labelSubject.Text = "Subject:";
+            // 
+            // issueSubject
+            // 
+            this.issueSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.issueSubject.Location = new System.Drawing.Point(65, 37);
+            this.issueSubject.Name = "issueSubject";
+            this.issueSubject.Size = new System.Drawing.Size(830, 20);
+            this.issueSubject.TabIndex = 3;
+            // 
+            // labelTracker
+            // 
+            this.labelTracker.AutoSize = true;
+            this.labelTracker.Location = new System.Drawing.Point(6, 65);
+            this.labelTracker.Name = "labelTracker";
+            this.labelTracker.Size = new System.Drawing.Size(47, 13);
+            this.labelTracker.Text = "Tracker:";
+            // 
+            // issueTracker
+            // 
+            this.issueTracker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.issueTracker.FormattingEnabled = true;
+            this.issueTracker.Location = new System.Drawing.Point(65, 63);
+            this.issueTracker.Name = "issueTracker";
+            this.issueTracker.Size = new System.Drawing.Size(830, 21);
+            this.issueTracker.TabIndex = 4;
+            this.issueTracker.AutoCompleteMode = AutoCompleteMode.Suggest;
+            this.issueTracker.AutoCompleteSource = AutoCompleteSource.ListItems;    
+            
+            // 
+            // labelAssignee
+            // 
+            this.labelAssignee.AutoSize = true;
+            this.labelAssignee.Location = new System.Drawing.Point(6, 90);
+            this.labelAssignee.Name = "label7";
+            this.labelAssignee.Size = new System.Drawing.Size(53, 13);
+            this.labelAssignee.Text = "Assignee:";
+            // 
+            // issueAssignee
+            // 
+            this.issueAssignee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.issueAssignee.FormattingEnabled = true;
+            this.issueAssignee.Location = new System.Drawing.Point(65, 87);
+            this.issueAssignee.Name = "issueAssignee";
+            this.issueAssignee.Size = new System.Drawing.Size(830, 21);
+            this.issueAssignee.TabIndex = 5;
+            this.issueAssignee.AutoCompleteMode = AutoCompleteMode.Suggest;
+            this.issueAssignee.AutoCompleteSource = AutoCompleteSource.ListItems;    
+            
+            // 
+            // labelPriority
+            // 
+            this.labelPriority.AutoSize = true;
+            this.labelPriority.Location = new System.Drawing.Point(8, 117);
+            this.labelPriority.Name = "label8";
+            this.labelPriority.Size = new System.Drawing.Size(41, 13);
+            this.labelPriority.Text = "Priority:";
+            // 
+            // issuePriority
+            // 
+            this.issuePriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.issuePriority.FormattingEnabled = true;
+            this.issuePriority.Location = new System.Drawing.Point(65, 114);
+            this.issuePriority.Name = "issuePriority";
+            this.issuePriority.Size = new System.Drawing.Size(830, 21);
+            this.issuePriority.TabIndex = 6;
+            this.issuePriority.AutoCompleteMode = AutoCompleteMode.Suggest;
+            this.issuePriority.AutoCompleteSource = AutoCompleteSource.ListItems;    
+            
+            // 
+            // labelParent
+            // 
+            this.labelParent.AutoSize = true;
+            this.labelParent.Location = new System.Drawing.Point(8, 138);
+            this.labelParent.Name = "labelParent";
+            this.labelParent.Size = new System.Drawing.Size(63, 13);
+            this.labelParent.Text = "Parent:";
+            // 
+            // parentIssue
+            //             
+            this.parentIssue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.parentIssue.FormattingEnabled = true;
+            this.parentIssue.Location = new System.Drawing.Point(65, 138);
+            this.parentIssue.Name = "issueTracker";
+            this.parentIssue.Size = new System.Drawing.Size(760, 21);
+            this.parentIssue.TabIndex = 7; 
+            this.parentIssue.AutoCompleteMode = AutoCompleteMode.Suggest;
+            this.parentIssue.AutoCompleteSource = AutoCompleteSource.ListItems;           
+            // 
+            // newIssueSync
+            // 
+            this.newIssueSync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.newIssueSync.Location = new System.Drawing.Point(825, 138);
+            this.newIssueSync.Name = "newIssueSync";
+            this.newIssueSync.Size = new System.Drawing.Size(75, 23);
+            this.newIssueSync.Text = "SyncSave";
+            this.newIssueSync.UseVisualStyleBackColor = true;  
+			this.newIssueSync.TabIndex = 8;              
+            this.newIssueSync.Click += new System.EventHandler(this.syncSave_Click);
+            
+            // 
+            // labelIssueDescription
+            // 
+            this.labelIssueDescription.AutoSize = true;
+            this.labelIssueDescription.Location = new System.Drawing.Point(8, 168);
+            this.labelIssueDescription.Name = "labelIssueDescription";
+            this.labelIssueDescription.Size = new System.Drawing.Size(63, 13);
+            this.labelIssueDescription.Text = "Description:";
+            // 
+            // issueDescription
+            // 
+            this.issueDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.issueDescription.Location = new System.Drawing.Point(11, 184);
+            this.issueDescription.Multiline = true;
+            this.issueDescription.Name = "issueDescription";
+            this.issueDescription.Size = new System.Drawing.Size(877, 74);
+            this.issueDescription.TabIndex = 9;
+            
+            // 
             // btnNewIssueStart
             // 
             this.btnNewIssueStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -244,120 +353,164 @@ namespace GreenshotRedmineUploader
             this.btnNewIssueStart.Text = "Upload";
             this.btnNewIssueStart.UseVisualStyleBackColor = true;
             this.btnNewIssueStart.Click += new System.EventHandler(this.newIssue);
+            
+            //TAB PAGE 2 ###################################################################################################
+
             // 
-            // issuePriority
+            // labelOldIssue
             // 
-            this.issuePriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.issuePriority.FormattingEnabled = true;
-            this.issuePriority.Location = new System.Drawing.Point(65, 114);
-            this.issuePriority.Name = "issuePriority";
-            this.issuePriority.Size = new System.Drawing.Size(830, 21);
-            this.issuePriority.TabIndex = 9;
+            this.labelOldIssue.AutoSize = true;
+            this.labelOldIssue.Location = new System.Drawing.Point(6, 9);
+            this.labelOldIssue.Name = "labelOldIssue";
+            this.labelOldIssue.Size = new System.Drawing.Size(35, 13);
+            this.labelOldIssue.Text = "Issue:";
             // 
-            // issueAssignee
+            // labelOldIssueIdSign
             // 
-            this.issueAssignee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.issueAssignee.FormattingEnabled = true;
-            this.issueAssignee.Location = new System.Drawing.Point(65, 87);
-            this.issueAssignee.Name = "issueAssignee";
-            this.issueAssignee.Size = new System.Drawing.Size(830, 21);
-            this.issueAssignee.TabIndex = 8;
+            this.labelOldIssueIdSign.AutoSize = true;
+            this.labelOldIssueIdSign.Location = new System.Drawing.Point(44, 9);
+            this.labelOldIssueIdSign.Name = "labelOldIssueIdSign";
+            this.labelOldIssueIdSign.Size = new System.Drawing.Size(14, 13);
+            this.labelOldIssueIdSign.Text = "#";        
+            
+            
             // 
-            // issueTracker
-            // 
-            this.issueTracker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.issueTracker.FormattingEnabled = true;
-            this.issueTracker.Location = new System.Drawing.Point(65, 63);
-            this.issueTracker.Name = "issueTracker";
-            this.issueTracker.Size = new System.Drawing.Size(830, 21);
-            this.issueTracker.TabIndex = 7;
-            // 
-            // issueParent
+            // oldIssue
             //             
-            this.issueParent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.oldIssue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.issueParent.FormattingEnabled = true;
-            this.issueParent.Location = new System.Drawing.Point(65, 63);
-            this.issueParent.Name = "issueTracker";
-            this.issueParent.Size = new System.Drawing.Size(830, 21);
-            this.issueParent.TabIndex = 7;
+            this.oldIssue.FormattingEnabled = true;
+            this.oldIssue.Location = new System.Drawing.Point(65, 6);
+            this.oldIssue.Name = "issueTracker";
+            this.oldIssue.Size = new System.Drawing.Size(760, 21);
+            this.oldIssue.TabIndex = 7;  
+            this.oldIssue.AutoCompleteMode = AutoCompleteMode.Suggest;
+            this.oldIssue.AutoCompleteSource = AutoCompleteSource.ListItems;
+            
+			// 
+            // oldIssueSync
             // 
-            // issueDescription
+            this.oldIssueSync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.oldIssueSync.Location = new System.Drawing.Point(825, 6);
+            this.oldIssueSync.Name = "oldIssueSync";
+            this.oldIssueSync.Size = new System.Drawing.Size(75, 23);
+            this.oldIssueSync.Text = "SyncSave";
+            this.oldIssueSync.UseVisualStyleBackColor = true;  
+			this.oldIssueSync.TabIndex = 8;              
+            this.oldIssueSync.Click += new System.EventHandler(this.syncSave_Click);           
             // 
-            this.issueDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
+            // issueAssigneeListUpdate
+            // 
+            this.issueAssigneeListUpdate.Location = new System.Drawing.Point(63, 37);
+            this.issueAssigneeListUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.issueDescription.Location = new System.Drawing.Point(11, 154);
-            this.issueDescription.Multiline = true;
-            this.issueDescription.Name = "issueDescription";
-            this.issueDescription.Size = new System.Drawing.Size(877, 104);
-            this.issueDescription.TabIndex = 6;
+            this.issueAssigneeListUpdate.Name = "issueAssigneeListUpdate";
+            this.issueAssigneeListUpdate.Size = new System.Drawing.Size(830, 21);
+            this.issueAssigneeListUpdate.Text = "Check and get Userlist";
+            this.issueAssigneeListUpdate.UseVisualStyleBackColor = true;            
+            this.issueAssigneeListUpdate.Click += new System.EventHandler(this.issueAssigneeListUpdate_Click);
+  			this.issueAssigneeListUpdate.TabIndex = 7;  
+
             // 
-            // issueSubject
+            // labelOldIssueAssignee
             // 
-            this.issueSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.labelOldIssueAssignee.AutoSize = true;
+            this.labelOldIssueAssignee.Location = new System.Drawing.Point(6, 64);
+            this.labelOldIssueAssignee.Name = "labelOldIssueAssignee";
+            this.labelOldIssueAssignee.Size = new System.Drawing.Size(41, 13);
+            this.labelOldIssueAssignee.Text = "Assignee:";  
+            // 
+            // oldissueAssignee
+            // 
+            this.oldissueAssignee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.issueSubject.Location = new System.Drawing.Point(65, 37);
-            this.issueSubject.Name = "issueSubject";
-            this.issueSubject.Size = new System.Drawing.Size(830, 20);
-            this.issueSubject.TabIndex = 5;
+            this.oldissueAssignee.FormattingEnabled = true;
+            this.oldissueAssignee.Location = new System.Drawing.Point(63, 64);
+            this.oldissueAssignee.Name = "oldissueAssignee";
+            this.oldissueAssignee.Size = new System.Drawing.Size(830, 21);
+            this.oldissueAssignee.TabIndex = 13;         
+            this.oldissueAssignee.AutoCompleteMode = AutoCompleteMode.Suggest;
+            this.oldissueAssignee.AutoCompleteSource = AutoCompleteSource.ListItems;
+            
             // 
-            // label9
+            // labelOldIssuePriority
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 138);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(63, 13);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Description:";
+            this.labelOldIssuePriority.AutoSize = true;
+            this.labelOldIssuePriority.Location = new System.Drawing.Point(6, 100);
+            this.labelOldIssuePriority.Name = "label12";
+            this.labelOldIssuePriority.Size = new System.Drawing.Size(41, 13);
+            this.labelOldIssuePriority.TabIndex = 9;
+            this.labelOldIssuePriority.Text = "Priority:";
+            // 
+            // oldissuePriority
+            // 
+            this.oldissuePriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.oldissuePriority.FormattingEnabled = true;
+            this.oldissuePriority.Location = new System.Drawing.Point(63, 98);
+            this.oldissuePriority.Name = "oldissuePriority";
+            this.oldissuePriority.Size = new System.Drawing.Size(830, 21);
+            this.oldissuePriority.TabIndex = 12; 
+            this.oldissuePriority.AutoCompleteMode = AutoCompleteMode.Suggest;
+            this.oldissuePriority.AutoCompleteSource = AutoCompleteSource.ListItems;
+            
+            // 
+            // labelOldIssueStatus
+            // 
+            this.labelOldIssueStatus.AutoSize = true;
+            this.labelOldIssueStatus.Location = new System.Drawing.Point(8, 138);
+            this.labelOldIssueStatus.Name = "labelOldIssueStatus";
+            this.labelOldIssueStatus.Size = new System.Drawing.Size(53, 13);
+            this.labelOldIssueStatus.Text = "Status:";
+             // 
+            // oldissueStatus
+            // 
+            this.oldissueStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.oldissueStatus.FormattingEnabled = true;
+            this.oldissueStatus.Location = new System.Drawing.Point(63, 138);
+            this.oldissueStatus.Name = "oldissueStatus";
+            this.oldissueStatus.Size = new System.Drawing.Size(830, 21);
+            this.oldissueStatus.TabIndex = 14; 
+            this.oldissueStatus.AutoCompleteMode = AutoCompleteMode.Suggest;
+            this.oldissueStatus.AutoCompleteSource = AutoCompleteSource.ListItems;
+            
             // 
             // labelNoteDesc
             // 
             this.labelNoteDesc.AutoSize = true;
-            this.labelNoteDesc.Location = new System.Drawing.Point(8, 138);
+            this.labelNoteDesc.Location = new System.Drawing.Point(8, 165);
             this.labelNoteDesc.Name = "labelNoteDesc";
             this.labelNoteDesc.Size = new System.Drawing.Size(63, 13);
-            this.labelNoteDesc.TabIndex = 4;
             this.labelNoteDesc.Text = "Note:";
+			// 
+            // issueNote
             // 
-            // label8
+            this.issueNote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.issueNote.Location = new System.Drawing.Point(11, 174);
+            this.issueNote.Multiline = true;
+            this.issueNote.Name = "issueNote";
+            this.issueNote.Size = new System.Drawing.Size(877, 84);
+            this.issueNote.TabIndex = 15; 
+            
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 117);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Priority:";
+            // oldissueUpload
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 90);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Assignee:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 65);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Tracker:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 40);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Subject:";
+            this.oldissueUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.oldissueUpload.Location = new System.Drawing.Point(811, 275);
+            this.oldissueUpload.Name = "oldissueUpload";
+            this.oldissueUpload.Size = new System.Drawing.Size(75, 23);
+            this.oldissueUpload.TabIndex = 14;
+            this.oldissueUpload.Text = "Upload";
+            this.oldissueUpload.UseVisualStyleBackColor = true;
+            this.oldissueUpload.Click += new System.EventHandler(this.updateIssue);
+ 
+            
+            //CONTAINER AND STUFF ###################################################################################################
+
+            
             // 
             // tabControl1
             // 
@@ -375,19 +528,22 @@ namespace GreenshotRedmineUploader
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.btnNewIssueStart);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.labelProject);
             this.tabPage1.Controls.Add(this.issueDescription);
             this.tabPage1.Controls.Add(this.issuePriority);
-            this.tabPage1.Controls.Add(this.label9);
+            this.tabPage1.Controls.Add(this.labelIssueDescription);
             this.tabPage1.Controls.Add(this.projectList);
             this.tabPage1.Controls.Add(this.projectAssigneeListUpdate);            
-            this.tabPage1.Controls.Add(this.label8);
+            this.tabPage1.Controls.Add(this.labelPriority);
             this.tabPage1.Controls.Add(this.issueAssignee);
-            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.labelSubject);
             this.tabPage1.Controls.Add(this.issueTracker);
             this.tabPage1.Controls.Add(this.issueSubject);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.labelTracker);
+            this.tabPage1.Controls.Add(this.labelAssignee);
+            this.tabPage1.Controls.Add(this.labelParent);
+            this.tabPage1.Controls.Add(this.newIssueSync);
+            this.tabPage1.Controls.Add(this.parentIssue);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -403,100 +559,22 @@ namespace GreenshotRedmineUploader
             this.tabPage2.Controls.Add(this.oldissueAssignee);
             this.tabPage2.Controls.Add(this.oldissueStatus);
             this.tabPage2.Controls.Add(this.issueAssigneeListUpdate);
-            this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.label13);
-            this.tabPage2.Controls.Add(this.label14);
-            this.tabPage2.Controls.Add(this.oldissueID);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.labelOldIssuePriority);
+            this.tabPage2.Controls.Add(this.labelOldIssueAssignee);
+            this.tabPage2.Controls.Add(this.labelOldIssueStatus);
+            this.tabPage2.Controls.Add(this.labelOldIssueIdSign);
+            this.tabPage2.Controls.Add(this.labelOldIssue);
             this.tabPage2.Controls.Add(this.labelNoteDesc);            
             this.tabPage2.Controls.Add(this.issueNote);
+            this.tabPage2.Controls.Add(this.oldIssueSync);
+            this.tabPage2.Controls.Add(this.oldIssue);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(903, 304);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Attach to Issue";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 64);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(41, 13);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Priority:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 40);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(53, 13);
-            this.label13.TabIndex = 8;
-            this.label13.Text = "Assignee:";
-            // 
-            // label13
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 100);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(53, 13);
-            this.label14.TabIndex = 8;
-            this.label14.Text = "Status:";
-            // 
-            // oldissueUpload
-            // 
-            this.oldissueUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.oldissueUpload.Location = new System.Drawing.Point(811, 275);
-            this.oldissueUpload.Name = "oldissueUpload";
-            this.oldissueUpload.Size = new System.Drawing.Size(75, 23);
-            this.oldissueUpload.TabIndex = 14;
-            this.oldissueUpload.Text = "Upload";
-            this.oldissueUpload.UseVisualStyleBackColor = true;
-            this.oldissueUpload.Click += new System.EventHandler(this.updateIssue);
-            // 
-            // oldissuePriority
-            // 
-            this.oldissuePriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.oldissuePriority.FormattingEnabled = true;
-            this.oldissuePriority.Location = new System.Drawing.Point(63, 64);
-            this.oldissuePriority.Name = "oldissuePriority";
-            this.oldissuePriority.Size = new System.Drawing.Size(830, 21);
-            this.oldissuePriority.TabIndex = 12;
-            // 
-            // oldissueAssignee
-            // 
-            this.oldissueAssignee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.oldissueAssignee.FormattingEnabled = true;
-            this.oldissueAssignee.Location = new System.Drawing.Point(63, 37);
-            this.oldissueAssignee.Name = "oldissueAssignee";
-            this.oldissueAssignee.Size = new System.Drawing.Size(830, 21);
-            this.oldissueAssignee.TabIndex = 13;
-            // 
-            // oldissueStatus
-            // 
-            this.oldissueStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.oldissueStatus.FormattingEnabled = true;
-            this.oldissueStatus.Location = new System.Drawing.Point(63, 98);
-            this.oldissueStatus.Name = "oldissueStatus";
-            this.oldissueStatus.Size = new System.Drawing.Size(830, 21);
-            this.oldissueStatus.TabIndex = 14;   
-			// 
-            // issueNote
-            // 
-            this.issueNote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.issueNote.Location = new System.Drawing.Point(11, 154);
-            this.issueNote.Multiline = true;
-            this.issueNote.Name = "issueNote";
-            this.issueNote.Size = new System.Drawing.Size(877, 104);
-            this.issueNote.TabIndex = 15;            
+            this.tabPage2.UseVisualStyleBackColor = true;           
             // 
             // Form1
             // 
@@ -506,9 +584,9 @@ namespace GreenshotRedmineUploader
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.openFile);
             this.Controls.Add(this.filesource);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.labelFile);
             this.Controls.Add(this.filename);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.labelFilename);
             this.Controls.Add(this.settings);
             this.Controls.Add(this.labelDesc);
             this.Controls.Add(this.description);
@@ -522,22 +600,21 @@ namespace GreenshotRedmineUploader
             this.ResumeLayout(false);
             this.PerformLayout();
             
-            this.Width = 400;
+            this.Width = 600;
 
 		}
 		
 		
         private System.Windows.Forms.ComboBox projectList;
         private System.Windows.Forms.Button settings;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox oldissueID;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelProject;
+        private System.Windows.Forms.Label labelOldIssue;
+        private System.Windows.Forms.Label labelOldIssueIdSign;
+        private System.Windows.Forms.Label labelFilename;
         private System.Windows.Forms.TextBox filename;
         private System.Windows.Forms.Label labelDesc;
         private System.Windows.Forms.TextBox description;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelFile;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox filesource;
         private System.Windows.Forms.Button openFile;
@@ -545,21 +622,20 @@ namespace GreenshotRedmineUploader
         private System.Windows.Forms.ComboBox issuePriority;
         private System.Windows.Forms.ComboBox issueAssignee;
         private System.Windows.Forms.ComboBox issueTracker;
-        private System.Windows.Forms.ComboBox issueParent;
         private System.Windows.Forms.TextBox issueDescription;
         private System.Windows.Forms.TextBox issueNote;
         private System.Windows.Forms.TextBox issueSubject;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelIssueDescription;
+        private System.Windows.Forms.Label labelPriority;
+        private System.Windows.Forms.Label labelAssignee;
+        private System.Windows.Forms.Label labelTracker;
+        private System.Windows.Forms.Label labelSubject;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label labelOldIssuePriority;
+        private System.Windows.Forms.Label labelOldIssueAssignee;
+        private System.Windows.Forms.Label labelOldIssueStatus;
         private System.Windows.Forms.Label labelNoteDesc;
         private System.Windows.Forms.Button oldissueUpload;
         private System.Windows.Forms.ComboBox oldissuePriority;
@@ -568,5 +644,13 @@ namespace GreenshotRedmineUploader
         
         private System.Windows.Forms.Button projectAssigneeListUpdate;
         private System.Windows.Forms.Button issueAssigneeListUpdate;
+        
+        
+        
+        private System.Windows.Forms.Label labelParent;
+        private System.Windows.Forms.Button newIssueSync;
+        private System.Windows.Forms.Button oldIssueSync;
+        private System.Windows.Forms.ComboBox parentIssue;
+        private System.Windows.Forms.ComboBox oldIssue;
 	}
 }

@@ -103,6 +103,47 @@ namespace GreenshotRedmineUploader
 				buffer.statuses.Clear();
 				buffer.trackers.Clear();
 				return false;
+			}        
+			syncIssueList();
+			return true;
+		}
+		
+		public bool getCurrentList(int projectId) {
+			buffer.currentIssues.Clear();
+			foreach (int key in buffer.issues.Keys) {
+				RedmineIssueStorage issue = (RedmineIssueStorage)buffer.issues[key];
+				if (projectId == issue.projectid) {
+					buffer.currentIssues.Add(issue.tracker+" - "+issue.subject+" ("+issue.id+")",issue.id);
+				}		
+			}			
+			return true;
+		}
+		
+		public bool syncIssueList() {
+			buffer.issues.Clear();	
+			buffer.allIssues.Clear();
+			buffer.currentIssues.Clear();
+			try {
+				int offset = 0;
+				IList<Issue> issuePage = null;
+				do {					
+					var parameters = new NameValueCollection {{"sort", "project%2Ctracker%2Cproject"},{"offset",offset.ToString()},{"limit","100"}};
+					issuePage = getManager().GetObjectList<Issue>(parameters);
+					
+					foreach (var issue in issuePage) {
+						RedmineIssueStorage storage = new RedmineIssueStorage((Issue)issue);
+						buffer.issues.Add(issue.Id, storage);
+						buffer.allIssues.Add(issue.Project.Name+" - "+issue.Tracker.Name+" - "+issue.Subject+" ("+issue.Id+")",issue.Id);						
+					}	
+					offset = offset + issuePage.Count;
+				} while(issuePage.Count > 0);
+				
+			} catch (Redmine.Net.Api.RedmineException e) {
+				MessageBox.Show(e.Message,"Error while Syncing.");
+				buffer.issues.Clear();
+				buffer.allIssues.Clear();
+				buffer.currentIssues.Clear();
+				return false;
 			}             
 			return true;
 		}

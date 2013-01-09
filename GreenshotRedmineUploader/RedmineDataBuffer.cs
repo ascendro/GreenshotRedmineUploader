@@ -31,7 +31,33 @@ using System.IO.IsolatedStorage;
 
 namespace GreenshotRedmineUploader
 {
-
+	[Serializable]
+	public class RedmineIssueStorage 
+	{
+		public int id;
+		public string tracker;
+		public string subject;
+		public string project;
+		public int projectid;
+		
+		public RedmineIssueStorage(int _id, string _tracker, string _subject, string _project, int _projectid) {
+			id = _id;
+			tracker = _tracker;
+			subject = _subject;
+			project = _project;
+			projectid = _projectid;
+		}
+		
+		public RedmineIssueStorage(Issue issue) {
+			id = issue.Id;
+			tracker = issue.Tracker.Name;
+			subject = issue.Subject;
+			project = issue.Project.Name;
+			projectid = issue.Project.Id;
+		}
+	}
+	
+	
 	/// <summary>
 	/// Redmine Settings stores the complete cached informations of the used redmine system and some settings of the connection
 	/// </summary>
@@ -41,13 +67,14 @@ namespace GreenshotRedmineUploader
 		public string host;
 		public string apikey;
 		
-		public Hashtable projects;
-		public Hashtable priorities;
-		public Hashtable trackers;
-		public Hashtable statuses;
-		public Hashtable users;
-		public Hashtable issues;
-		public Hashtable currentIssues;
+		public SortedDictionary<string,int> projects;
+		public SortedDictionary<string,int> priorities;
+		public SortedDictionary<string,int> trackers;
+		public SortedDictionary<string,int> statuses;
+		public SortedDictionary<string,int> users;
+		public SortedDictionary<int,RedmineIssueStorage> issues;
+		public SortedDictionary<string,int> currentIssues;
+		public SortedDictionary<string,int> allIssues;
 		public int defaultProject;
 		public int defaultTracker;
 		public int defaultPriority;
@@ -57,12 +84,14 @@ namespace GreenshotRedmineUploader
 		public bool closeAfterUpload;	
 		
 		public RedmineDataBuffer() {
-			projects = new Hashtable();
-			priorities = new Hashtable();
-			trackers = new Hashtable();
-			issues = new Hashtable();
-			trackers = new Hashtable();
-			currentIssues = new Hashtable();
+			projects = new SortedDictionary<string,int>();
+			priorities = new SortedDictionary<string,int>();
+			trackers = new SortedDictionary<string,int>();
+			statuses = new SortedDictionary<string,int>();
+			issues = new SortedDictionary<int,RedmineIssueStorage>();
+			trackers = new SortedDictionary<string,int>();
+			currentIssues = new SortedDictionary<string,int>();
+			allIssues = new SortedDictionary<string,int>();
 			defaultProject = 0;
 			defaultTracker = 0;
 			defaultPriority = 0;
@@ -89,7 +118,8 @@ namespace GreenshotRedmineUploader
 				theFormatter.Serialize(theStream, this);
 				theStream.Dispose();
 				theStream.Close();
-			} catch{
+			} catch (Exception e){
+				MessageBox.Show(e.Message,"Error");
 				return false;
 			}
 			return true;
@@ -113,6 +143,33 @@ namespace GreenshotRedmineUploader
 			catch {
 				return null;
 			}
+			
+			//Backward compatibility: Some may use old save files and we need some initialized dataset:
+			if (theReturn.projects == null) {
+				theReturn.projects = new SortedDictionary<string,int>();
+			}
+			if (theReturn.priorities == null) {
+				theReturn.priorities = new SortedDictionary<string,int>();
+			}
+			if (theReturn.trackers == null) {
+				theReturn.trackers = new SortedDictionary<string,int>();
+			}
+			if (theReturn.issues == null) {
+				theReturn.issues = new SortedDictionary<int,RedmineIssueStorage>();
+			}
+			if (theReturn.trackers == null) {
+				theReturn.trackers = new SortedDictionary<string,int>();
+			}
+			if (theReturn.currentIssues == null) {
+				theReturn.currentIssues = new SortedDictionary<string,int>();
+			}
+			if (theReturn.allIssues == null) {
+				theReturn.allIssues = new SortedDictionary<string,int>();
+			}
+			if (theReturn.statuses == null) {
+				theReturn.statuses = new SortedDictionary<string,int>();
+			}
+			
 			return theReturn;
 		}	
 

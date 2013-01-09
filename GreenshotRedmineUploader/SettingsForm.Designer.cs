@@ -135,11 +135,13 @@ namespace GreenshotRedmineUploader
             // 
             // redmineSync
             // 
-            this.redmineSync.Location = new System.Drawing.Point(268, 59);
+            this.redmineSync.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.redmineSync.Location = new System.Drawing.Point(98, 59);
             this.redmineSync.Name = "redmineSync";
-            this.redmineSync.Size = new System.Drawing.Size(128, 23);
+            this.redmineSync.Size = new System.Drawing.Size(297, 23);
             this.redmineSync.TabIndex = 9;
-            this.redmineSync.Text = "Test and Synchronize";
+            this.redmineSync.Text = "Test and Synchronize (takes time = good sign)";
             this.redmineSync.UseVisualStyleBackColor = true;
             this.redmineSync.Click += new System.EventHandler(this.redmineSync_Click);
             // 

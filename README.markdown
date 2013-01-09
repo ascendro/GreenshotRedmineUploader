@@ -52,3 +52,10 @@ This tool is using the redmine-net-api (https://code.google.com/p/redmine-net-ap
 
  - initial release
  
+### 0.0.2
+
+ - Small fixes
+ - Add a file description
+ - Comment on old issue
+ - Issue ID input now with select box
+ - Select Boxes are sorted and have autosearch

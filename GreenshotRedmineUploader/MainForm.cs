@@ -51,6 +51,8 @@ namespace GreenshotRedmineUploader
 		BindingSource statusesListBS = new BindingSource();
 		BindingSource projectAssigneeListBS = new BindingSource();
 		BindingSource issueAssigneeListBS = new BindingSource();
+		BindingSource allIssuesListBS = new BindingSource();
+		BindingSource currentIssuesListBS = new BindingSource();
 		
 		public MainForm()
 		{
@@ -95,6 +97,7 @@ namespace GreenshotRedmineUploader
         }
         
         private void connectDataSources() {
+        	projectListBS.DataSource = typeof(List<int>);
             projectListBS.DataSource = Program.redmine.buffer.projects;
 			this.projectList.DataSource = projectListBS;
 			try { 			
@@ -105,6 +108,7 @@ namespace GreenshotRedmineUploader
         		this.projectList.DataSource = null;
         	}
             
+			trackerListBS.DataSource = typeof(List<int>);
             trackerListBS.DataSource = Program.redmine.buffer.trackers;
 			this.issueTracker.DataSource = trackerListBS;		
 			try { 			
@@ -115,6 +119,7 @@ namespace GreenshotRedmineUploader
         		this.issueTracker.DataSource = null;
         	}
 
+			priorityListBS.DataSource = typeof(List<int>);
             priorityListBS.DataSource = Program.redmine.buffer.priorities;
 			this.issuePriority.DataSource = priorityListBS;		
 			try { 			
@@ -134,6 +139,7 @@ namespace GreenshotRedmineUploader
         		this.oldissuePriority.DataSource = null;
         	}
           
+			statusesListBS.DataSource = typeof(List<int>);
             statusesListBS.DataSource = Program.redmine.buffer.statuses;
 			this.oldissueStatus.DataSource = statusesListBS;		
 			try { 			
@@ -145,14 +151,65 @@ namespace GreenshotRedmineUploader
         	}
           
             this.issueSubject.Text = Program.redmine.buffer.defaultSubject;
-              	
+            
+            connectDataSourcesIssueLists();
         }  
+        
+        private void connectDataSourcesIssueLists() {
+        	if (projectList.SelectedValue != null) {
+        		Program.redmine.getCurrentList((int)projectList.SelectedValue);
+        	}
+        	
+        	allIssuesListBS.DataSource = typeof(List<int>);
+        	allIssuesListBS.DataSource = Program.redmine.buffer.allIssues;
+			this.oldIssue.DataSource = allIssuesListBS;		
+			try { 			
+				this.oldIssue.ValueMember = "Value";
+	            this.oldIssue.DisplayMember = "Key";
+	            this.oldIssue.SelectedIndex = 0;
+	            this.oldIssue.SelectedIndex = -1; //Lol @ http://support.microsoft.com/default.aspx?scid=kb;en-us;327244
+  	        } catch (Exception) {
+        		this.oldIssue.DataSource = null;
+        	}
+			
+			currentIssuesListBS.DataSource = typeof(List<int>);
+			currentIssuesListBS.DataSource = Program.redmine.buffer.currentIssues;
+			this.parentIssue.DataSource = currentIssuesListBS;		
+			try { 			
+				this.parentIssue.ValueMember = "Value";
+	            this.parentIssue.DisplayMember = "Key";
+	            this.parentIssue.SelectedIndex = 0;
+	            this.parentIssue.SelectedIndex = -1; //Lol @ http://support.microsoft.com/default.aspx?scid=kb;en-us;327244
+  	        } catch (Exception) {
+        		this.parentIssue.DataSource = null;
+        	}
+        }
+        
+        private bool SelectedIndexChangedEventLoop = false;
+        public  void projectList_SelectedIndexChanged(object sender, System.EventArgs e) {
+        	if (!SelectedIndexChangedEventLoop) {
+        		SelectedIndexChangedEventLoop = true;
+        		connectDataSourcesIssueLists();
+        	}
+        	SelectedIndexChangedEventLoop = false;
+        }
+        
+        private string getSelectedIssueId(ComboBox issueselection) {
+        	string result;
+        	if (issueselection.SelectedValue != null && (int)issueselection.SelectedValue != 0 ) {
+        		result = issueselection.SelectedValue.ToString();
+        	} else {
+        		result = issueselection.Text;
+        	}
+        	return result;
+        }
         
         private void issueAssigneeListUpdate_Click(object sender, EventArgs e)
         {
+        	
         	this.Enabled = false;
         	try {
-        		this.issueAssigneeListBS.DataSource = Program.redmine.getIssueAssigneeList(this.oldissueID.Text);        	
+        		this.issueAssigneeListBS.DataSource = Program.redmine.getIssueAssigneeList(this.getSelectedIssueId(this.oldIssue));
         		this.oldissueAssignee.DataSource = issueAssigneeListBS;        	
 	        	this.oldissueAssignee.ValueMember = "Value";
 	            this.oldissueAssignee.DisplayMember = "Key";
@@ -160,6 +217,19 @@ namespace GreenshotRedmineUploader
         		this.oldissueAssignee.DataSource = null;
         	}
             this.Enabled = true;
+        }
+        
+        private void syncSave_Click(object sender, EventArgs e)
+        {
+        	this.Enabled = false;
+        	Program.redmine.syncIssueList();        	
+        	connectDataSourcesIssueLists();
+        	if (!Program.redmine.buffer.Save()) {
+        		MessageBox.Show("Error while saving - data wasn't saved.","Error");
+        	} else {
+        		MessageBox.Show("Settings saved.","Success");
+        	}
+        	this.Enabled = true;
         }
         
         private void projectAssigneeListUpdate_Click(object sender, EventArgs e)
@@ -201,6 +271,7 @@ namespace GreenshotRedmineUploader
         									Description = this.issueDescription.Text,        									
         									Uploads = uploads
         								};
+        		newIssue.ParentIssue = new IdentifiableName{Id = int.Parse(this.getSelectedIssueId(this.parentIssue))};
         		if (issuePriority.SelectedValue != null && (int)issuePriority.SelectedValue != 0 ) {
         			newIssue.Priority = new IdentifiableName{Id = (int)issuePriority.SelectedValue};	
         		}
@@ -233,7 +304,7 @@ namespace GreenshotRedmineUploader
         		upload.ContentType = "application/octet-stream";
         		upload.Description = this.description.Text;
         		   	
-        		var updateIssue = Program.redmine.getIssue(this.oldissueID.Text);
+        		var updateIssue = Program.redmine.getIssue(this.getSelectedIssueId(this.oldIssue));
         		
         		if (updateIssue.Uploads == null) {
         			updateIssue.Uploads = new List<Upload>();
