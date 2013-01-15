@@ -35,6 +35,7 @@ namespace GreenshotRedmineUploader
         /// </summary>
         private void InitializeComponent()
         {
+        	System.Resources.ResourceManager resources = new System.Resources.ResourceManager("GreenshotRedmineUploader.Resources",System.Reflection.Assembly.GetExecutingAssembly());
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -243,6 +244,7 @@ namespace GreenshotRedmineUploader
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 293);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("Icon")));
             this.Controls.Add(this.label8);
             this.Controls.Add(this.redmineDefaultStatus);
             this.Controls.Add(this.redmineDefaultSubject);

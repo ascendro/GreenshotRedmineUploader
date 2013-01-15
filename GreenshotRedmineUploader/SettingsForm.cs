@@ -26,7 +26,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Collections.Generic;
 
 namespace GreenshotRedmineUploader
 {

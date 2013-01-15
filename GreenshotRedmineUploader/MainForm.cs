@@ -271,7 +271,11 @@ namespace GreenshotRedmineUploader
         									Description = this.issueDescription.Text,        									
         									Uploads = uploads
         								};
-        		newIssue.ParentIssue = new IdentifiableName{Id = int.Parse(this.getSelectedIssueId(this.parentIssue))};
+        		
+        		string parentIssue = this.getSelectedIssueId(this.parentIssue);
+        		if (parentIssue != "") {
+        			newIssue.ParentIssue = new IdentifiableName{Id = int.Parse(parentIssue)};
+        		}
         		if (issuePriority.SelectedValue != null && (int)issuePriority.SelectedValue != 0 ) {
         			newIssue.Priority = new IdentifiableName{Id = (int)issuePriority.SelectedValue};	
         		}

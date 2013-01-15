@@ -44,6 +44,7 @@ namespace GreenshotRedmineUploader
 			this.Text = "Ascendro S.R.L - GreenshotRedmineUploader";
 			this.Name = "MainForm";
 			
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager("GreenshotRedmineUploader.Resources",System.Reflection.Assembly.GetExecutingAssembly());
             this.projectList = new System.Windows.Forms.ComboBox();
             this.settings = new System.Windows.Forms.Button();
             this.labelProject = new System.Windows.Forms.Label();
@@ -581,6 +582,8 @@ namespace GreenshotRedmineUploader
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(935, 435);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("Icon")));
+          
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.openFile);
             this.Controls.Add(this.filesource);
