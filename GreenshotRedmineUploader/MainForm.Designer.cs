@@ -107,6 +107,7 @@ namespace GreenshotRedmineUploader
 			this.projectList.Name = "projectList";
 			this.projectList.Size = new System.Drawing.Size(391, 21);
 			this.projectList.TabIndex = 1;
+			this.projectList.SelectedIndexChanged += new System.EventHandler(this.projectList_SelectedIndexChanged);
 			// 
 			// settings
 			// 

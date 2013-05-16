@@ -4,3 +4,6 @@ C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\Greens
 C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Release\GreenshotRedmineUploader.csprojResolveAssemblyReference.cache
 C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Release\GreenshotRedmineUploader.exe
 C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Release\GreenshotRedmineUploader.pdb
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Release\GreenshotRedmineUploader.csproj.GenerateResource.Cache
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Release\GreenshotRedmineUploader.Resources.resources
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Release\GreenshotRedmineUploader.FontType.resources

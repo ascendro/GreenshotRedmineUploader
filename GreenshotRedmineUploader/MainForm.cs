@@ -356,6 +356,12 @@ namespace GreenshotRedmineUploader
         		if (issueAssignee.SelectedValue != null && (int)issueAssignee.SelectedValue != 0 ) {
         			newIssue.AssignedTo = new IdentifiableName{Id = (int)issueAssignee.SelectedValue};
         		}
+        		if (issueCategory.SelectedValue != null && (int)issueCategory.SelectedValue != 0) {
+        			newIssue.Category = new IdentifiableName{Id = (int)issueCategory.SelectedValue};	
+        		}
+        		if (issueVersion.SelectedValue != null && (int)issueVersion.SelectedValue != 0) {
+        			newIssue.FixedVersion = new IdentifiableName{Id = (int)issueVersion.SelectedValue};
+        		}
         		newIssue = Program.redmine.createIssue(newIssue);        	
 				MessageBox.Show(String.Concat("Issue #",newIssue.Id," succesfully created"),"Success!");
 				
@@ -389,7 +395,7 @@ namespace GreenshotRedmineUploader
         		} 
         		updateIssue.Uploads.Add(upload);
         		if (this.issueNote.Text.Length > 0) {
-        			updateIssue.UpdateNote = this.issueNote.Text;
+        			updateIssue.Notes = this.issueNote.Text;
         		}
         		
 
@@ -401,6 +407,12 @@ namespace GreenshotRedmineUploader
         		}
         		if (oldissueStatus.SelectedValue != null && (int)oldissueStatus.SelectedValue != 0 ) {
         			updateIssue.Status = new IdentifiableName{Id = (int)oldissueStatus.SelectedValue};
+        		}
+        		if (oldIssueCategory.SelectedValue != null && (int)oldIssueCategory.SelectedValue != 0) {
+        			updateIssue.Category = new IdentifiableName{Id = (int)oldIssueCategory.SelectedValue};	
+        		}
+        		if (oldIssueVersion.SelectedValue != null && (int)oldIssueVersion.SelectedValue != 0) {
+        			updateIssue.FixedVersion = new IdentifiableName{Id = (int)oldIssueVersion.SelectedValue};	
         		}
 
         		Program.redmine.updateIssue(updateIssue); 
@@ -416,5 +428,6 @@ namespace GreenshotRedmineUploader
         	}
         	this.Enabled = true;
         }     
+		
 	}
 }
