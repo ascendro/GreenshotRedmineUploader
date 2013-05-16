@@ -59,3 +59,10 @@ This tool is using the redmine-net-api (https://code.google.com/p/redmine-net-ap
  - Comment on old issue
  - Issue ID input now with select box
  - Select Boxes are sorted and have autosearch
+ 
+### 0.0.3
+
+ - Add Issue Category selection
+ - Add Issue Version selection
+ - Load all Datafields when data for update issue is fetched
+ - Better text search on old issue combobox
