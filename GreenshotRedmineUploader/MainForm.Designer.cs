@@ -196,8 +196,8 @@ namespace GreenshotRedmineUploader
             this.projectList.Name = "projectList";
             this.projectList.Size = new System.Drawing.Size(760, 21);
             this.projectList.TabIndex = 1;
-            this.projectList.AutoCompleteMode = AutoCompleteMode.Suggest;
-            this.projectList.AutoCompleteSource = AutoCompleteSource.ListItems;   
+            this.projectList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.projectList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;   
 			this.projectList.SelectedIndexChanged += new System.EventHandler(projectList_SelectedIndexChanged);            
             // 
             // projectAssigneeListUpdate
@@ -246,8 +246,8 @@ namespace GreenshotRedmineUploader
             this.issueTracker.Name = "issueTracker";
             this.issueTracker.Size = new System.Drawing.Size(830, 21);
             this.issueTracker.TabIndex = 4;
-            this.issueTracker.AutoCompleteMode = AutoCompleteMode.Suggest;
-            this.issueTracker.AutoCompleteSource = AutoCompleteSource.ListItems;    
+            this.issueTracker.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.issueTracker.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;    
             
             // 
             // labelAssignee
@@ -267,8 +267,8 @@ namespace GreenshotRedmineUploader
             this.issueAssignee.Name = "issueAssignee";
             this.issueAssignee.Size = new System.Drawing.Size(830, 21);
             this.issueAssignee.TabIndex = 5;
-            this.issueAssignee.AutoCompleteMode = AutoCompleteMode.Suggest;
-            this.issueAssignee.AutoCompleteSource = AutoCompleteSource.ListItems;    
+            this.issueAssignee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.issueAssignee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;    
             
             // 
             // labelPriority
@@ -288,8 +288,8 @@ namespace GreenshotRedmineUploader
             this.issuePriority.Name = "issuePriority";
             this.issuePriority.Size = new System.Drawing.Size(830, 21);
             this.issuePriority.TabIndex = 6;
-            this.issuePriority.AutoCompleteMode = AutoCompleteMode.Suggest;
-            this.issuePriority.AutoCompleteSource = AutoCompleteSource.ListItems;    
+            this.issuePriority.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.issuePriority.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;    
             
             // 
             // labelParent
@@ -309,8 +309,8 @@ namespace GreenshotRedmineUploader
             this.parentIssue.Name = "issueTracker";
             this.parentIssue.Size = new System.Drawing.Size(760, 21);
             this.parentIssue.TabIndex = 7; 
-            this.parentIssue.AutoCompleteMode = AutoCompleteMode.Suggest;
-            this.parentIssue.AutoCompleteSource = AutoCompleteSource.ListItems;           
+            this.parentIssue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.parentIssue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;           
             // 
             // newIssueSync
             // 
@@ -385,8 +385,8 @@ namespace GreenshotRedmineUploader
             this.oldIssue.Name = "issueTracker";
             this.oldIssue.Size = new System.Drawing.Size(760, 21);
             this.oldIssue.TabIndex = 7;  
-            this.oldIssue.AutoCompleteMode = AutoCompleteMode.Suggest;
-            this.oldIssue.AutoCompleteSource = AutoCompleteSource.ListItems;
+            this.oldIssue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.oldIssue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             
 			// 
             // oldIssueSync
@@ -429,9 +429,9 @@ namespace GreenshotRedmineUploader
             this.oldissueAssignee.Location = new System.Drawing.Point(63, 64);
             this.oldissueAssignee.Name = "oldissueAssignee";
             this.oldissueAssignee.Size = new System.Drawing.Size(830, 21);
-            this.oldissueAssignee.TabIndex = 13;         
-            this.oldissueAssignee.AutoCompleteMode = AutoCompleteMode.Suggest;
-            this.oldissueAssignee.AutoCompleteSource = AutoCompleteSource.ListItems;
+            this.oldissueAssignee.TabIndex = 13;           
+            this.oldissueAssignee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.oldissueAssignee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             
             // 
             // labelOldIssuePriority
@@ -452,8 +452,8 @@ namespace GreenshotRedmineUploader
             this.oldissuePriority.Name = "oldissuePriority";
             this.oldissuePriority.Size = new System.Drawing.Size(830, 21);
             this.oldissuePriority.TabIndex = 12; 
-            this.oldissuePriority.AutoCompleteMode = AutoCompleteMode.Suggest;
-            this.oldissuePriority.AutoCompleteSource = AutoCompleteSource.ListItems;
+            this.oldissuePriority.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.oldissuePriority.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             
             // 
             // labelOldIssueStatus
@@ -473,8 +473,8 @@ namespace GreenshotRedmineUploader
             this.oldissueStatus.Name = "oldissueStatus";
             this.oldissueStatus.Size = new System.Drawing.Size(830, 21);
             this.oldissueStatus.TabIndex = 14; 
-            this.oldissueStatus.AutoCompleteMode = AutoCompleteMode.Suggest;
-            this.oldissueStatus.AutoCompleteSource = AutoCompleteSource.ListItems;
+            this.oldissueStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.oldissueStatus.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             
             // 
             // labelNoteDesc
