@@ -706,7 +706,7 @@ namespace GreenshotRedmineUploader
 			this.Controls.Add(this.description);
 			this.Icon = global::GreenshotRedmineUploader.Resources.Icon;
 			this.Name = "MainForm";
-			this.Text = "Ascendro S.R.L - GreenshotRedmineUploader V0.0.2";
+			this.Text = "Ascendro S.R.L - GreenshotRedmineUploader V0.0.3";
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
