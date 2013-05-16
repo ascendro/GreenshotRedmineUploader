@@ -681,12 +681,14 @@ namespace GreenshotRedmineUploader
 			this.oldIssue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
 			this.oldIssue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.oldIssue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.oldIssue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.oldIssue.FormattingEnabled = true;
 			this.oldIssue.Location = new System.Drawing.Point(65, 6);
 			this.oldIssue.Name = "oldIssue";
 			this.oldIssue.Size = new System.Drawing.Size(409, 21);
 			this.oldIssue.TabIndex = 7;
+			this.oldIssue.TextChanged += new System.EventHandler(this.OldIssueTextChanged);
+			this.oldIssue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OldIssueKeyPress);
 			// 
 			// MainForm
 			// 
@@ -702,6 +704,7 @@ namespace GreenshotRedmineUploader
 			this.Controls.Add(this.settings);
 			this.Controls.Add(this.labelDesc);
 			this.Controls.Add(this.description);
+			this.Icon = global::GreenshotRedmineUploader.Resources.Icon;
 			this.Name = "MainForm";
 			this.Text = "Ascendro S.R.L - GreenshotRedmineUploader V0.0.2";
 			this.Load += new System.EventHandler(this.MainForm_Load);

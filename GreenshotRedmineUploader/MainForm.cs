@@ -165,14 +165,16 @@ namespace GreenshotRedmineUploader
         	}
         	
         	allIssuesListBS.DataSource = typeof(List<int>);
-        	allIssuesListBS.DataSource = Program.redmine.buffer.allIssues;
+        	allIssuesListBS.DataSource = Program.redmine.buffer.allIssues;        	
+			this.oldIssue.Tag = null;
 			this.oldIssue.DataSource = allIssuesListBS;		
 			try { 			
 				this.oldIssue.ValueMember = "Value";
 	            this.oldIssue.DisplayMember = "Key";
 	            this.oldIssue.SelectedIndex = 0;
 	            this.oldIssue.SelectedIndex = -1; //Lol @ http://support.microsoft.com/default.aspx?scid=kb;en-us;327244
-  	        } catch (Exception) {
+  	        } catch (Exception e) {
+				System.Console.Out.Write(e.Message);
         		this.oldIssue.DataSource = null;
         	}
 			
@@ -199,11 +201,13 @@ namespace GreenshotRedmineUploader
         }
         
         private string getSelectedIssueId(ComboBox issueselection) {
-        	string result;
-        	if (issueselection.SelectedValue != null && (int)issueselection.SelectedValue != 0 ) {
-        		result = issueselection.SelectedValue.ToString();
-        	} else {
-        		result = issueselection.Text;
+        	string result = issueselection.Text;
+        	try {
+        		if (issueselection.SelectedValue != null && (int)issueselection.SelectedValue != 0 ) {
+        			result = issueselection.SelectedValue.ToString();
+        		}
+        	} catch (Exception) {
+        		
         	}
         	return result;
         }
@@ -429,5 +433,63 @@ namespace GreenshotRedmineUploader
         	this.Enabled = true;
         }     
 		
+		
+		void OldIssueKeyPress(object sender, KeyPressEventArgs e)
+		{	
+			this.OldIssuePressed(true,e.KeyChar);				
+		}
+		
+		void OldIssueTextChanged(object sender, EventArgs e)
+		{
+			if (this.oldIssue.Text.Length == 0) this.OldIssuePressed(false,'\0');			
+			
+		}
+		
+		object locker = new object();
+		void OldIssuePressed(bool pressed,char key) {
+			lock (locker) {				
+				if (pressed) {
+					this.oldIssue.DroppedDown = true;
+				}
+				
+				string original = this.oldIssue.Text;
+				int originalCursorSelectionStart = this.oldIssue.SelectionStart;
+				int originalCursorSelectionLength = this.oldIssue.SelectionLength;				
+				
+				
+				string s = this.oldIssue.Text.ToLower();
+				if (originalCursorSelectionStart >= 0 && originalCursorSelectionStart < s.Length) {
+					s.Remove(originalCursorSelectionStart);	
+				}
+				
+				if (char.IsControl(key)) {
+					if (key == '\x08' /*backspace*/) {
+						if (originalCursorSelectionStart-1 >= 0 && originalCursorSelectionStart-1 < s.Length) {
+							s.Remove(originalCursorSelectionStart-1);	
+						}	
+					}
+				} else {
+					s = String.Concat(s,key ).ToLower();	
+				}
+				
+
+				SortedDictionary<string,int> filteredIssue;						    
+				if (s.Length > 0) {
+					filteredIssue = new SortedDictionary<string,int>();
+					foreach (KeyValuePair<string,int> item in Program.redmine.buffer.allIssues) {
+						if (item.Key.ToString().ToLower().Contains(s)) {
+							filteredIssue.Add(item.Key,item.Value);
+						}
+					}
+				} else {
+				 filteredIssue = Program.redmine.buffer.allIssues;	
+				}
+				allIssuesListBS.DataSource = filteredIssue;         	
+			    this.oldIssue.DataSource = allIssuesListBS;	
+			    	    			    
+			    this.oldIssue.Text = original;
+			    this.oldIssue.Select(originalCursorSelectionStart,originalCursorSelectionLength);			    			    		
+			}
+		}
 	}
 }
