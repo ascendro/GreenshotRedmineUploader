@@ -50,7 +50,11 @@ namespace GreenshotRedmineUploader
 		BindingSource priorityListBS = new BindingSource();
 		BindingSource statusesListBS = new BindingSource();
 		BindingSource projectAssigneeListBS = new BindingSource();
+		BindingSource projectCategoryListBS = new BindingSource();
+		BindingSource projectVersionListBS = new BindingSource();
 		BindingSource issueAssigneeListBS = new BindingSource();
+		BindingSource issueCategoryListBS = new BindingSource();
+		BindingSource issueVersionListBS = new BindingSource();
 		BindingSource allIssuesListBS = new BindingSource();
 		BindingSource currentIssuesListBS = new BindingSource();
 		
@@ -208,14 +212,46 @@ namespace GreenshotRedmineUploader
         {
         	
         	this.Enabled = false;
+        	Issue issue = Program.redmine.getPlainIssue(this.getSelectedIssueId(this.oldIssue));
+        	
+        	if (issue == null) {
+        		this.Enabled = true;
+        		return;
+        	} 
+        	
         	try {
-        		this.issueAssigneeListBS.DataSource = Program.redmine.getIssueAssigneeList(this.getSelectedIssueId(this.oldIssue));
+        		this.issueAssigneeListBS.DataSource = Program.redmine.getProjectAssigneeList(issue.Project.Id.ToString());
         		this.oldissueAssignee.DataSource = issueAssigneeListBS;        	
 	        	this.oldissueAssignee.ValueMember = "Value";
-	            this.oldissueAssignee.DisplayMember = "Key";
+	            this.oldissueAssignee.DisplayMember = "Key";	            
+	            this.oldissueAssignee.SelectedIndex = this.oldissueAssignee.FindStringExact(issue.AssignedTo.Name);
         	} catch (Exception) {
         		this.oldissueAssignee.DataSource = null;
         	}
+        	
+        	try {
+        		this.issueCategoryListBS.DataSource = Program.redmine.getProjectCategoryList(issue.Project.Id.ToString());
+        		this.oldIssueCategory.DataSource = issueCategoryListBS;        	
+	        	this.oldIssueCategory.ValueMember = "Value";
+	            this.oldIssueCategory.DisplayMember = "Key";	            
+	            this.oldIssueCategory.SelectedIndex = this.oldIssueCategory.FindStringExact(issue.Category.Name);
+        	} catch (Exception) {
+        		this.oldIssueCategory.DataSource = null;
+        	}
+
+        	try {
+        		this.issueVersionListBS.DataSource = Program.redmine.getProjectVersionList(issue.Project.Id.ToString());
+        		this.oldIssueVersion.DataSource = issueVersionListBS;        	
+	        	this.oldIssueVersion.ValueMember = "Value";
+	            this.oldIssueVersion.DisplayMember = "Key";	            
+	            this.oldIssueVersion.SelectedIndex = this.oldIssueVersion.FindStringExact(issue.FixedVersion.Name);
+        	} catch (Exception) {
+        		this.oldIssueVersion.DataSource = null;
+        	}
+        	
+        	this.oldissuePriority.SelectedIndex = this.oldissuePriority.FindStringExact(issue.Priority.Name);
+        	this.oldissueStatus.SelectedIndex = this.oldissueStatus.FindStringExact(issue.Status.Name);
+        	
             this.Enabled = true;
         }
         
@@ -240,11 +276,49 @@ namespace GreenshotRedmineUploader
 	        	this.issueAssignee.DataSource = projectAssigneeListBS;	        	
 	        	this.issueAssignee.ValueMember = "Value";
 	            this.issueAssignee.DisplayMember = "Key";
+	            this.issueAssignee.SelectedIndex = this.issueAssignee.FindStringExact("No Change");
         	} catch (Exception) {
         		this.issueAssignee.DataSource = null;
         	}
             this.Enabled = true;
-        }      
+        }     
+
+		void ProjectCategoryListUpdateClick(object sender, EventArgs e)
+		{
+        	this.Enabled = false;
+			try {        	
+        		this.projectCategoryListBS.DataSource = Program.redmine.getProjectCategoryList(this.projectList.SelectedValue.ToString());						
+	        	this.issueCategory.DataSource = projectCategoryListBS;	        	
+	        	this.issueCategory.ValueMember = "Value";
+	            this.issueCategory.DisplayMember = "Key";
+	            this.issueCategory.SelectedIndex = this.issueCategory.FindStringExact("No Change");
+        	} catch (Exception) {
+        		this.issueCategory.DataSource = null;
+        	}
+            this.Enabled = true;
+		}
+		
+		void ProjectVersionListUpdateClick(object sender, EventArgs e)
+		{
+        	this.Enabled = false;
+			try {        	
+        		this.projectVersionListBS.DataSource = Program.redmine.getProjectVersionList(this.projectList.SelectedValue.ToString());
+	        	this.issueVersion.DataSource = projectVersionListBS;	        	
+	        	this.issueVersion.ValueMember = "Value";
+	            this.issueVersion.DisplayMember = "Key";
+	            this.issueVersion.SelectedIndex = this.issueVersion.FindStringExact("No Change");
+        	} catch (Exception) {
+        		this.issueVersion.DataSource = null;
+        	}
+            this.Enabled = true;	
+		}
+		
+		void ProjectAllListUpdateClick(object sender, EventArgs e)
+		{
+			this.ProjectVersionListUpdateClick(sender,e); 
+			this.ProjectCategoryListUpdateClick(sender,e); 
+			this.projectAssigneeListUpdate_Click(sender,e);
+		}        
         
         private void newIssue(object sender, EventArgs e) {
         	this.Enabled = false;
@@ -341,8 +415,6 @@ namespace GreenshotRedmineUploader
         		MessageBox.Show(ex.Message,"Error while updating issue.");
         	}
         	this.Enabled = true;
-        }
-        
-    
+        }     
 	}
 }

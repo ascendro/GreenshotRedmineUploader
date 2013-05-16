@@ -148,19 +148,21 @@ namespace GreenshotRedmineUploader
 			return true;
 		}
 		
-		public Hashtable getIssueAssigneeList(string issueId) {	
+		public Issue getPlainIssue(string issueId) {	
 			var parameters = new NameValueCollection {};
+			Issue issue = null;
 			try {
-		 		var issue = getManager().GetObject<Issue>(issueId,parameters);
-		 		return getProjectAssigneeList(issue.Project.Id.ToString());
+		 		issue = getManager().GetObject<Issue>(issueId,parameters);
 			} catch (Redmine.Net.Api.RedmineException e) {
 				MessageBox.Show(e.Message,"Error while checking issue.");
 			}
-			return new Hashtable();
+			return issue;
 		}
+		
 		
 		public Hashtable getProjectAssigneeList(string projectId) {
 			Hashtable assigneeList = new Hashtable();
+			assigneeList.Add("No Change",null);
 			try {
 				var parameters = new NameValueCollection {{"project_id", projectId}};
 				foreach (var member in getManager().GetObjectList<ProjectMembership>(parameters))
@@ -172,11 +174,40 @@ namespace GreenshotRedmineUploader
 					}
 	            }
 			} catch (Redmine.Net.Api.RedmineException e) {
-				MessageBox.Show(e.Message,"Error while checking issue.");
+				MessageBox.Show(e.Message,"Error while checking assignee list.");
 			}
-			return assigneeList;
-			
+			return assigneeList;			
 		}
+		
+		public Hashtable getProjectVersionList(string projectId) {
+			Hashtable versionList = new Hashtable();
+			versionList.Add("No Change",null);
+			try {
+				var parameters = new NameValueCollection {{"project_id", projectId}};
+				foreach (var version in getManager().GetObjectList<Redmine.Net.Api.Types.Version>(parameters))
+	            {
+					versionList.Add(version.Name,version.Id);
+	            }
+			} catch (Redmine.Net.Api.RedmineException e) {
+				MessageBox.Show(e.Message,"Error while checking version list.");
+			}
+			return versionList;		
+		}
+		
+		public Hashtable getProjectCategoryList(string projectId) {
+			Hashtable categoryList = new Hashtable();
+			categoryList.Add("No Change",null);
+			try {
+				var parameters = new NameValueCollection {{"project_id", projectId}};
+				foreach (var category in getManager().GetObjectList<IssueCategory>(parameters))
+	            {
+					categoryList.Add(category.Name,category.Id);
+	            }
+			} catch (Redmine.Net.Api.RedmineException e) {
+				MessageBox.Show(e.Message,"Error while checking category list.");
+			}
+			return categoryList;
+		}		
 		
 		public Upload uploadFile(string filename) {
 			//Upload data is not attaching any authorisation keys... so we need to implement it by ourself.
