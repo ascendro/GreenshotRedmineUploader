@@ -28,7 +28,7 @@ Thats it. The tool is ready to use.
 
 ## Used Library
 
-This tool is using the redmine-net-api (https://code.google.com/p/redmine-net-api/) - SVN Revision 110.
+This tool is using the redmine-net-api (https://code.google.com/p/redmine-net-api/) - SVN Revision 118.
 
 ## License
 
