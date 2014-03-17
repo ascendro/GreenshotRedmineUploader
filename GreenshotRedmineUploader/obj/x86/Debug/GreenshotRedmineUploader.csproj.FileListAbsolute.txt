@@ -4,3 +4,12 @@ C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\Greens
 C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.csprojResolveAssemblyReference.cache
 C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.exe
 C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.pdb
+C:\EasyPHPDev13.1VC9\data\localweb\GreenshotRedmineUploader\GreenshotRedmineUploader\bin\Debug\GreenshotRedmineUploader.exe
+C:\EasyPHPDev13.1VC9\data\localweb\GreenshotRedmineUploader\GreenshotRedmineUploader\bin\Debug\GreenshotRedmineUploader.pdb
+C:\EasyPHPDev13.1VC9\data\localweb\GreenshotRedmineUploader\GreenshotRedmineUploader\bin\Debug\Redmine.Net.Api.dll
+C:\EasyPHPDev13.1VC9\data\localweb\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.csprojResolveAssemblyReference.cache
+C:\EasyPHPDev13.1VC9\data\localweb\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.FontType.resources
+C:\EasyPHPDev13.1VC9\data\localweb\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.Resources.resources
+C:\EasyPHPDev13.1VC9\data\localweb\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.csproj.GenerateResource.Cache
+C:\EasyPHPDev13.1VC9\data\localweb\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.exe
+C:\EasyPHPDev13.1VC9\data\localweb\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.pdb
