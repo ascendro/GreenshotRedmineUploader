@@ -91,6 +91,8 @@ namespace GreenshotRedmineUploader
 			this.labelNoteDesc = new System.Windows.Forms.Label();
 			this.oldIssueSync = new System.Windows.Forms.Button();
 			this.oldIssue = new System.Windows.Forms.ComboBox();
+			this.oldIssueTracker = new System.Windows.Forms.ComboBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
@@ -99,7 +101,7 @@ namespace GreenshotRedmineUploader
 			// projectList
 			// 
 			this.projectList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.projectList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.projectList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.projectList.FormattingEnabled = true;
@@ -159,7 +161,7 @@ namespace GreenshotRedmineUploader
 			// filename
 			// 
 			this.filename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.filename.Location = new System.Drawing.Point(74, 67);
 			this.filename.Name = "filename";
 			this.filename.Size = new System.Drawing.Size(501, 20);
@@ -177,7 +179,7 @@ namespace GreenshotRedmineUploader
 			// description
 			// 
 			this.description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.description.Location = new System.Drawing.Point(74, 97);
 			this.description.Name = "description";
 			this.description.Size = new System.Drawing.Size(501, 20);
@@ -199,7 +201,7 @@ namespace GreenshotRedmineUploader
 			// filesource
 			// 
 			this.filesource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.filesource.Location = new System.Drawing.Point(74, 41);
 			this.filesource.Name = "filesource";
 			this.filesource.Size = new System.Drawing.Size(417, 20);
@@ -230,7 +232,7 @@ namespace GreenshotRedmineUploader
 			// issuePriority
 			// 
 			this.issuePriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.issuePriority.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.issuePriority.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.issuePriority.FormattingEnabled = true;
@@ -242,7 +244,7 @@ namespace GreenshotRedmineUploader
 			// issueAssignee
 			// 
 			this.issueAssignee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.issueAssignee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.issueAssignee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.issueAssignee.FormattingEnabled = true;
@@ -254,7 +256,7 @@ namespace GreenshotRedmineUploader
 			// issueTracker
 			// 
 			this.issueTracker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.issueTracker.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.issueTracker.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.issueTracker.FormattingEnabled = true;
@@ -266,8 +268,8 @@ namespace GreenshotRedmineUploader
 			// issueDescription
 			// 
 			this.issueDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-									| System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.issueDescription.Location = new System.Drawing.Point(11, 229);
 			this.issueDescription.Multiline = true;
 			this.issueDescription.Name = "issueDescription";
@@ -277,18 +279,18 @@ namespace GreenshotRedmineUploader
 			// issueNote
 			// 
 			this.issueNote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-									| System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
-			this.issueNote.Location = new System.Drawing.Point(11, 212);
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.issueNote.Location = new System.Drawing.Point(9, 238);
 			this.issueNote.Multiline = true;
 			this.issueNote.Name = "issueNote";
-			this.issueNote.Size = new System.Drawing.Size(526, 80);
+			this.issueNote.Size = new System.Drawing.Size(526, 65);
 			this.issueNote.TabIndex = 15;
 			// 
 			// issueSubject
 			// 
 			this.issueSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.issueSubject.Location = new System.Drawing.Point(65, 37);
 			this.issueSubject.Name = "issueSubject";
 			this.issueSubject.Size = new System.Drawing.Size(479, 20);
@@ -342,8 +344,8 @@ namespace GreenshotRedmineUploader
 			// tabControl1
 			// 
 			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-									| System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Location = new System.Drawing.Point(15, 133);
@@ -440,7 +442,7 @@ namespace GreenshotRedmineUploader
 			// issueVersion
 			// 
 			this.issueVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.issueVersion.FormattingEnabled = true;
 			this.issueVersion.Location = new System.Drawing.Point(65, 189);
 			this.issueVersion.Name = "issueVersion";
@@ -450,7 +452,7 @@ namespace GreenshotRedmineUploader
 			// issueCategory
 			// 
 			this.issueCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.issueCategory.FormattingEnabled = true;
 			this.issueCategory.Location = new System.Drawing.Point(65, 165);
 			this.issueCategory.Name = "issueCategory";
@@ -491,7 +493,7 @@ namespace GreenshotRedmineUploader
 			// parentIssue
 			// 
 			this.parentIssue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.parentIssue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.parentIssue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.parentIssue.FormattingEnabled = true;
@@ -502,6 +504,8 @@ namespace GreenshotRedmineUploader
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.oldIssueTracker);
+			this.tabPage2.Controls.Add(this.label1);
 			this.tabPage2.Controls.Add(this.labelOldIssueVersion);
 			this.tabPage2.Controls.Add(this.labelOldIssueCategory);
 			this.tabPage2.Controls.Add(this.oldIssueVersion);
@@ -549,7 +553,7 @@ namespace GreenshotRedmineUploader
 			// oldIssueVersion
 			// 
 			this.oldIssueVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.oldIssueVersion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.oldIssueVersion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.oldIssueVersion.FormattingEnabled = true;
@@ -561,7 +565,7 @@ namespace GreenshotRedmineUploader
 			// oldIssueCategory
 			// 
 			this.oldIssueCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.oldIssueCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.oldIssueCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.oldIssueCategory.FormattingEnabled = true;
@@ -584,7 +588,7 @@ namespace GreenshotRedmineUploader
 			// oldissuePriority
 			// 
 			this.oldissuePriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.oldissuePriority.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.oldissuePriority.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.oldissuePriority.FormattingEnabled = true;
@@ -596,7 +600,7 @@ namespace GreenshotRedmineUploader
 			// oldissueAssignee
 			// 
 			this.oldissueAssignee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.oldissueAssignee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.oldissueAssignee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.oldissueAssignee.FormattingEnabled = true;
@@ -608,7 +612,7 @@ namespace GreenshotRedmineUploader
 			// oldissueStatus
 			// 
 			this.oldissueStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.oldissueStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.oldissueStatus.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.oldissueStatus.FormattingEnabled = true;
@@ -620,7 +624,7 @@ namespace GreenshotRedmineUploader
 			// issueAssigneeListUpdate
 			// 
 			this.issueAssigneeListUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.issueAssigneeListUpdate.Location = new System.Drawing.Point(63, 33);
 			this.issueAssigneeListUpdate.Name = "issueAssigneeListUpdate";
 			this.issueAssigneeListUpdate.Size = new System.Drawing.Size(479, 21);
@@ -659,7 +663,7 @@ namespace GreenshotRedmineUploader
 			// labelNoteDesc
 			// 
 			this.labelNoteDesc.AutoSize = true;
-			this.labelNoteDesc.Location = new System.Drawing.Point(8, 196);
+			this.labelNoteDesc.Location = new System.Drawing.Point(8, 222);
 			this.labelNoteDesc.Name = "labelNoteDesc";
 			this.labelNoteDesc.Size = new System.Drawing.Size(33, 13);
 			this.labelNoteDesc.TabIndex = 19;
@@ -679,7 +683,7 @@ namespace GreenshotRedmineUploader
 			// oldIssue
 			// 
 			this.oldIssue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.oldIssue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.oldIssue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.oldIssue.FormattingEnabled = true;
@@ -689,6 +693,27 @@ namespace GreenshotRedmineUploader
 			this.oldIssue.TabIndex = 7;
 			this.oldIssue.TextChanged += new System.EventHandler(this.OldIssueTextChanged);
 			this.oldIssue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OldIssueKeyPress);
+			// 
+			// oldIssueTracker
+			// 
+			this.oldIssueTracker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.oldIssueTracker.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.oldIssueTracker.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.oldIssueTracker.FormattingEnabled = true;
+			this.oldIssueTracker.Location = new System.Drawing.Point(65, 192);
+			this.oldIssueTracker.Name = "oldIssueTracker";
+			this.oldIssueTracker.Size = new System.Drawing.Size(479, 21);
+			this.oldIssueTracker.TabIndex = 24;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(6, 194);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(47, 13);
+			this.label1.TabIndex = 25;
+			this.label1.Text = "Tracker:";
 			// 
 			// MainForm
 			// 
@@ -715,6 +740,7 @@ namespace GreenshotRedmineUploader
 			this.tabPage2.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
 		}
 		private System.Windows.Forms.ComboBox oldIssueCategory;
 		private System.Windows.Forms.ComboBox oldIssueVersion;
@@ -776,5 +802,7 @@ namespace GreenshotRedmineUploader
         private System.Windows.Forms.Button oldIssueSync;
         private System.Windows.Forms.ComboBox parentIssue;
         private System.Windows.Forms.ComboBox oldIssue;
+        private System.Windows.Forms.ComboBox oldIssueTracker;
+        private System.Windows.Forms.Label label1;
 	}
 }

@@ -114,13 +114,19 @@ namespace GreenshotRedmineUploader
             
 			trackerListBS.DataSource = typeof(List<int>);
             trackerListBS.DataSource = Program.redmine.buffer.trackers;
-			this.issueTracker.DataSource = trackerListBS;		
+			this.issueTracker.DataSource = trackerListBS;	
+			this.oldIssueTracker.DataSource = trackerListBS;		
 			try { 			
 				this.issueTracker.ValueMember = "Value";
 	            this.issueTracker.DisplayMember = "Key";
 	            this.issueTracker.SelectedValue = Program.redmine.buffer.defaultTracker;
+	            
+	            this.oldIssueTracker.ValueMember = "Value";
+	            this.oldIssueTracker.DisplayMember = "Key";
+	            this.oldIssueTracker.SelectedValue = Program.redmine.buffer.defaultTracker;
 	        } catch (Exception) {
         		this.issueTracker.DataSource = null;
+        		this.oldIssueTracker.DataSource = null;
         	}
 
 			priorityListBS.DataSource = typeof(List<int>);
@@ -255,6 +261,7 @@ namespace GreenshotRedmineUploader
         	
         	this.oldissuePriority.SelectedIndex = this.oldissuePriority.FindStringExact(issue.Priority.Name);
         	this.oldissueStatus.SelectedIndex = this.oldissueStatus.FindStringExact(issue.Status.Name);
+        	this.oldIssueTracker.SelectedIndex = this.oldIssueTracker.FindStringExact(issue.Tracker.Name);
         	
             this.Enabled = true;
         }
@@ -417,6 +424,9 @@ namespace GreenshotRedmineUploader
         		}
         		if (oldIssueVersion.SelectedValue != null && (int)oldIssueVersion.SelectedValue != 0) {
         			updateIssue.FixedVersion = new IdentifiableName{Id = (int)oldIssueVersion.SelectedValue};	
+        		}
+        		if (oldIssueTracker.SelectedValue != null && (int)oldIssueTracker.SelectedValue != 0) {
+        			updateIssue.Tracker = new IdentifiableName{Id = (int)oldIssueTracker.SelectedValue};	
         		}
 
         		Program.redmine.updateIssue(updateIssue); 
