@@ -82,6 +82,7 @@ namespace GreenshotRedmineUploader
 		public string defaultSubject;
 		
 		public bool closeAfterUpload;	
+		public bool onlyImportOpenVersions;
 		
 		public RedmineDataBuffer() {
 			projects = new SortedDictionary<string,int>();
@@ -99,6 +100,7 @@ namespace GreenshotRedmineUploader
 			host = "";
 			apikey = "";
 			closeAfterUpload = true;
+			onlyImportOpenVersions = false;
 			defaultSubject = "";
 		}
 		

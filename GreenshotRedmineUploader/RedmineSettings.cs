@@ -186,7 +186,10 @@ namespace GreenshotRedmineUploader
 				var parameters = new NameValueCollection {{"project_id", projectId}};
 				foreach (var version in getManager().GetObjectList<Redmine.Net.Api.Types.Version>(parameters))
 	            {
-					versionList.Add(version.Name,version.Id);
+					if ((buffer.onlyImportOpenVersions && version.Status.ToString().Equals("open")) ||
+					    !buffer.onlyImportOpenVersions) {
+						versionList.Add(version.Name,version.Id);	
+					}
 	            }
 			} catch (Redmine.Net.Api.RedmineException e) {
 				MessageBox.Show(e.Message,"Error while checking version list.");

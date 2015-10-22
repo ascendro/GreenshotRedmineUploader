@@ -253,8 +253,8 @@ namespace GreenshotRedmineUploader
         		this.issueVersionListBS.DataSource = Program.redmine.getProjectVersionList(issue.Project.Id.ToString());
         		this.oldIssueVersion.DataSource = issueVersionListBS;        	
 	        	this.oldIssueVersion.ValueMember = "Value";
-	            this.oldIssueVersion.DisplayMember = "Key";	            
-	            this.oldIssueVersion.SelectedIndex = this.oldIssueVersion.FindStringExact(issue.FixedVersion.Name);
+	            this.oldIssueVersion.DisplayMember = "Key";
+				this.oldIssueVersion.SelectedIndex = this.oldIssueVersion.FindStringExact(issue.FixedVersion != null ? issue.FixedVersion.Name : "No Change");
         	} catch (Exception) {
         		this.oldIssueVersion.DataSource = null;
         	}

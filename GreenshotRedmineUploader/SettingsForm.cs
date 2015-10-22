@@ -111,6 +111,8 @@ namespace GreenshotRedmineUploader
             
             this.redmineCloseAfterUpload.Checked = Program.redmine.buffer.closeAfterUpload;
             
+            this.redmineOnlyImportOpenVersions.Checked = Program.redmine.buffer.onlyImportOpenVersions;
+            
         }  
         
         private void storeData() {
@@ -142,6 +144,7 @@ namespace GreenshotRedmineUploader
             Program.redmine.buffer.defaultSubject = this.redmineDefaultSubject.Text;
             
             Program.redmine.buffer.closeAfterUpload = this.redmineCloseAfterUpload.Checked;
+            Program.redmine.buffer.onlyImportOpenVersions = this.redmineOnlyImportOpenVersions.Checked;
         }
 
         private void redmineSync_Click(object sender, EventArgs e)
