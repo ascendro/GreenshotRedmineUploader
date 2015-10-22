@@ -26,6 +26,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Forms;
 using System.Collections;
 using Redmine.Net.Api;
@@ -266,9 +267,9 @@ namespace GreenshotRedmineUploader
         	Program.redmine.syncIssueList();        	
         	connectDataSourcesIssueLists();
         	if (!Program.redmine.buffer.Save()) {
-        		MessageBox.Show("Error while saving - data wasn't saved.","Error");
+        		System.Windows.Forms.MessageBox.Show("Error while saving - data wasn't saved.","Error");
         	} else {
-        		MessageBox.Show("Settings saved.","Success");
+        		System.Windows.Forms.MessageBox.Show("Settings saved.","Success");
         	}
         	this.Enabled = true;
         }
@@ -367,15 +368,25 @@ namespace GreenshotRedmineUploader
         		if (issueVersion.SelectedValue != null && (int)issueVersion.SelectedValue != 0) {
         			newIssue.FixedVersion = new IdentifiableName{Id = (int)issueVersion.SelectedValue};
         		}
-        		newIssue = Program.redmine.createIssue(newIssue);        	
-				MessageBox.Show(String.Concat("Issue #",newIssue.Id," succesfully created"),"Success!");
+        		newIssue = Program.redmine.createIssue(newIssue); 
+
+				DialogResult messageBoxResult = 
+					MessageBox.Show(
+						String.Concat("Issue #",newIssue.Id," succesfully created.\nOpen Issue now?"), 
+						"Success!", 
+						MessageBoxButtons.YesNo
+					);
+				if (messageBoxResult.ToString() == "Yes") {
+					String uri = new UriBuilder(Program.redmine.buffer.host).Uri.ToString();
+					System.Diagnostics.Process.Start(String.Concat(uri ,"issues/",newIssue.Id));
+				}    
 				
 				if (Program.redmine.buffer.closeAfterUpload) {
 					Application.Exit();
 				}
 				
         	} catch (Exception ex) {
-        		MessageBox.Show(ex.Message,"Error while creating issue.");
+        		System.Windows.Forms.MessageBox.Show(ex.Message,"Error while creating issue.");
         	}
         	this.Enabled = true;
         }
@@ -424,15 +435,24 @@ namespace GreenshotRedmineUploader
         		}
 
         		Program.redmine.updateIssue(updateIssue); 
-        		        		
-				MessageBox.Show(String.Concat("Issue #",updateIssue.Id," succesfully updated"),"Success!");
+				
+				DialogResult messageBoxResult = 
+					MessageBox.Show(
+						String.Concat("Issue #",updateIssue.Id," succesfully updated.\nOpen Issue now?"), 
+						"Success!", 
+						MessageBoxButtons.YesNo
+					);
+				if (messageBoxResult.ToString() == "Yes") {
+					String uri = new UriBuilder(Program.redmine.buffer.host).Uri.ToString();
+					System.Diagnostics.Process.Start(String.Concat(uri ,"issues/",updateIssue.Id));
+				}
 				
 				if (Program.redmine.buffer.closeAfterUpload) {
 					Application.Exit();
 				}
 				
         	} catch (Exception ex) {
-        		MessageBox.Show(ex.Message,"Error while updating issue.");
+        		System.Windows.Forms.MessageBox.Show(ex.Message,"Error while updating issue.");
         	}
         	this.Enabled = true;
         }     
