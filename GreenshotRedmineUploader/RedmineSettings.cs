@@ -271,5 +271,68 @@ namespace GreenshotRedmineUploader
 		    return _Buffer;
 		}
 		
+		public class CustomFieldDefinition {
+			public int id;
+			public string name;
+			public enum Fieldtype { FieldTypeString, FieldTypeList };
+			public Fieldtype fieldtype;
+			public string[] values;
+			public string defaultValue;
+			
+			public CustomFieldDefinition(string definition) {
+				id = 0;
+				name = "";
+				fieldtype = Fieldtype.FieldTypeString;
+				values = new string[0];
+				defaultValue = "";
+				
+				string[] parts = definition.Split(new char[1]{';'});
+				if (parts.Length >= 1) {
+					try { 
+						id = int.Parse(parts[0]);
+					} catch (Exception e) {
+						id = 0;
+					}
+				}
+				if (parts.Length >= 2) {
+					name = parts[1];
+				}
+				if (parts.Length >= 3) {
+					switch (parts[2]) {
+					case "list": 
+						fieldtype = Fieldtype.FieldTypeList; break;
+					case "string":
+						fieldtype = Fieldtype.FieldTypeString; break;
+					default:
+						fieldtype = Fieldtype.FieldTypeString; break;
+					}
+				}
+				if (parts.Length >= 4) {
+					values = parts[3].Split(new char[1]{','});
+				}
+				if (parts.Length >= 5) {
+					defaultValue = parts[4];
+				}
+			}
+		}
+		
+		
+		public CustomFieldDefinition[] getCustomFieldDefinitions() {
+			string[] result = buffer.customFields.Split(new [] { '\r', '\n' });
+			List<string> list = new List<string>();
+			for (int i = 0;i < result.Length;i++) {
+				if (!result[i].Equals("")) {
+					list.Add(result[i]);
+				}
+			}
+			
+			
+			CustomFieldDefinition[] definitions = new CustomFieldDefinition[list.Count];
+			for (int i = 0;i < list.Count; i++) {
+				definitions[i] = new CustomFieldDefinition(list[i]);
+			}
+			return definitions;
+		}
+		
 	}
 }

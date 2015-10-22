@@ -115,6 +115,8 @@ namespace GreenshotRedmineUploader
             
             this.disableSSLVerification.Checked = Program.redmine.buffer.disableSSLVerification;
             
+            this.txtCustomFields.Text = Program.redmine.buffer.customFields;
+            
         }  
         
         private void storeData() {
@@ -148,6 +150,8 @@ namespace GreenshotRedmineUploader
             Program.redmine.buffer.closeAfterUpload = this.redmineCloseAfterUpload.Checked;
             Program.redmine.buffer.onlyImportOpenVersions = this.redmineOnlyImportOpenVersions.Checked;
             Program.redmine.buffer.disableSSLVerification = this.disableSSLVerification.Checked;
+            
+            Program.redmine.buffer.customFields = this.txtCustomFields.Text;
         }
 
         private void redmineSync_Click(object sender, EventArgs e)
@@ -195,6 +199,10 @@ namespace GreenshotRedmineUploader
         private void settings_FormClosed(object sender, FormClosedEventArgs e)
         {
         	Program.mainForm.reconnectData();
-        }            
+        }
+		void Label9Click(object sender, EventArgs e)
+		{
+	
+		}            
 	}
 }

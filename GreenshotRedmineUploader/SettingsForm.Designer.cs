@@ -56,6 +56,10 @@ namespace GreenshotRedmineUploader
         	this.label8 = new System.Windows.Forms.Label();
         	this.redmineOnlyImportOpenVersions = new System.Windows.Forms.CheckBox();
         	this.disableSSLVerification = new System.Windows.Forms.CheckBox();
+        	this.label9 = new System.Windows.Forms.Label();
+        	this.label10 = new System.Windows.Forms.Label();
+        	this.label11 = new System.Windows.Forms.Label();
+        	this.txtCustomFields = new System.Windows.Forms.TextBox();
         	this.SuspendLayout();
         	// 
         	// label1
@@ -88,7 +92,7 @@ namespace GreenshotRedmineUploader
         	// settingsSave
         	// 
         	this.settingsSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        	this.settingsSave.Location = new System.Drawing.Point(145, 293);
+        	this.settingsSave.Location = new System.Drawing.Point(145, 465);
         	this.settingsSave.Name = "settingsSave";
         	this.settingsSave.Size = new System.Drawing.Size(135, 23);
         	this.settingsSave.TabIndex = 3;
@@ -99,7 +103,7 @@ namespace GreenshotRedmineUploader
         	// settingsDiscard
         	// 
         	this.settingsDiscard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        	this.settingsDiscard.Location = new System.Drawing.Point(285, 293);
+        	this.settingsDiscard.Location = new System.Drawing.Point(285, 465);
         	this.settingsDiscard.Name = "settingsDiscard";
         	this.settingsDiscard.Size = new System.Drawing.Size(110, 23);
         	this.settingsDiscard.TabIndex = 4;
@@ -154,7 +158,7 @@ namespace GreenshotRedmineUploader
         	this.redmineDefaultTracker.FormattingEnabled = true;
         	this.redmineDefaultTracker.Location = new System.Drawing.Point(97, 162);
         	this.redmineDefaultTracker.Name = "redmineDefaultTracker";
-        	this.redmineDefaultTracker.Size = new System.Drawing.Size(297, 21);
+        	this.redmineDefaultTracker.Size = new System.Drawing.Size(299, 21);
         	this.redmineDefaultTracker.TabIndex = 10;
         	// 
         	// redmineDefaultPriority
@@ -164,7 +168,7 @@ namespace GreenshotRedmineUploader
         	this.redmineDefaultPriority.FormattingEnabled = true;
         	this.redmineDefaultPriority.Location = new System.Drawing.Point(97, 189);
         	this.redmineDefaultPriority.Name = "redmineDefaultPriority";
-        	this.redmineDefaultPriority.Size = new System.Drawing.Size(297, 21);
+        	this.redmineDefaultPriority.Size = new System.Drawing.Size(299, 21);
         	this.redmineDefaultPriority.TabIndex = 11;
         	// 
         	// label4
@@ -196,7 +200,7 @@ namespace GreenshotRedmineUploader
         	// redmineCloseAfterUpload
         	// 
         	this.redmineCloseAfterUpload.AutoSize = true;
-        	this.redmineCloseAfterUpload.Location = new System.Drawing.Point(96, 267);
+        	this.redmineCloseAfterUpload.Location = new System.Drawing.Point(97, 267);
         	this.redmineCloseAfterUpload.Name = "redmineCloseAfterUpload";
         	this.redmineCloseAfterUpload.Size = new System.Drawing.Size(152, 17);
         	this.redmineCloseAfterUpload.TabIndex = 16;
@@ -216,9 +220,9 @@ namespace GreenshotRedmineUploader
         	// 
         	this.redmineDefaultSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-        	this.redmineDefaultSubject.Location = new System.Drawing.Point(98, 241);
+        	this.redmineDefaultSubject.Location = new System.Drawing.Point(97, 241);
         	this.redmineDefaultSubject.Name = "redmineDefaultSubject";
-        	this.redmineDefaultSubject.Size = new System.Drawing.Size(298, 20);
+        	this.redmineDefaultSubject.Size = new System.Drawing.Size(299, 20);
         	this.redmineDefaultSubject.TabIndex = 18;
         	// 
         	// redmineDefaultStatus
@@ -226,9 +230,9 @@ namespace GreenshotRedmineUploader
         	this.redmineDefaultStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
         	this.redmineDefaultStatus.FormattingEnabled = true;
-        	this.redmineDefaultStatus.Location = new System.Drawing.Point(96, 216);
+        	this.redmineDefaultStatus.Location = new System.Drawing.Point(97, 216);
         	this.redmineDefaultStatus.Name = "redmineDefaultStatus";
-        	this.redmineDefaultStatus.Size = new System.Drawing.Size(297, 21);
+        	this.redmineDefaultStatus.Size = new System.Drawing.Size(299, 21);
         	this.redmineDefaultStatus.TabIndex = 19;
         	// 
         	// label8
@@ -260,11 +264,54 @@ namespace GreenshotRedmineUploader
         	this.disableSSLVerification.Text = "Disable SSL Verification (requires restart)";
         	this.disableSSLVerification.UseVisualStyleBackColor = true;
         	// 
+        	// label9
+        	// 
+        	this.label9.AutoSize = true;
+        	this.label9.Location = new System.Drawing.Point(12, 287);
+        	this.label9.Name = "label9";
+        	this.label9.Size = new System.Drawing.Size(153, 13);
+        	this.label9.TabIndex = 23;
+        	this.label9.Text = "Custom Fields: (requires restart)";
+        	this.label9.Click += new System.EventHandler(this.Label9Click);
+        	// 
+        	// label10
+        	// 
+        	this.label10.AutoSize = true;
+        	this.label10.Location = new System.Drawing.Point(11, 418);
+        	this.label10.Name = "label10";
+        	this.label10.Size = new System.Drawing.Size(325, 13);
+        	this.label10.TabIndex = 24;
+        	this.label10.Text = "Format: ID;Name;Type;Values;Default Allowed Types: list and string";
+        	// 
+        	// label11
+        	// 
+        	this.label11.AutoSize = true;
+        	this.label11.Location = new System.Drawing.Point(11, 431);
+        	this.label11.Name = "label11";
+        	this.label11.Size = new System.Drawing.Size(294, 13);
+        	this.label11.TabIndex = 25;
+        	this.label11.Text = "Example: 1;External Status;list;Open,In Process,Closed;Open";
+        	// 
+        	// txtCustomFields
+        	// 
+        	this.txtCustomFields.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+        	this.txtCustomFields.Location = new System.Drawing.Point(98, 303);
+        	this.txtCustomFields.Multiline = true;
+        	this.txtCustomFields.Name = "txtCustomFields";
+        	this.txtCustomFields.Size = new System.Drawing.Size(296, 112);
+        	this.txtCustomFields.TabIndex = 26;
+        	// 
         	// SettingsForm
         	// 
         	this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         	this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        	this.ClientSize = new System.Drawing.Size(408, 328);
+        	this.ClientSize = new System.Drawing.Size(408, 500);
+        	this.Controls.Add(this.txtCustomFields);
+        	this.Controls.Add(this.label11);
+        	this.Controls.Add(this.label10);
+        	this.Controls.Add(this.label9);
         	this.Controls.Add(this.disableSSLVerification);
         	this.Controls.Add(this.redmineOnlyImportOpenVersions);
         	this.Controls.Add(this.label8);
@@ -316,5 +363,9 @@ namespace GreenshotRedmineUploader
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox redmineOnlyImportOpenVersions;
         private System.Windows.Forms.CheckBox disableSSLVerification;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtCustomFields;
 	}
 }

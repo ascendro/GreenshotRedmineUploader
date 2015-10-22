@@ -4,3 +4,7 @@ C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\Greens
 C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.csprojResolveAssemblyReference.cache
 C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.exe
 C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.pdb
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.Resources.resources
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.csproj.GenerateResource.Cache
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.SettingsForm.resources
+C:\Users\Michael\Documents\SharpDevelop Projects\GreenshotRedmineUploader\GreenshotRedmineUploader\obj\x86\Debug\GreenshotRedmineUploader.MainForm.resources

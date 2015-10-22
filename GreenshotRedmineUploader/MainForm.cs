@@ -53,6 +53,8 @@ namespace GreenshotRedmineUploader
 		BindingSource allIssuesListBS = new BindingSource();
 		BindingSource currentIssuesListBS = new BindingSource();
 		
+		RedmineSettings.CustomFieldDefinition[] customFieldDefinitions;
+		
 		public MainForm()
 		{
 			//
@@ -60,7 +62,119 @@ namespace GreenshotRedmineUploader
 			//
 			InitializeComponent();
 			
+			customFieldDefinitions = Program.redmine.getCustomFieldDefinitions();
+			customFieldsNew = new Control[customFieldDefinitions.Length];
+			customFieldsUpdate = new Control[customFieldDefinitions.Length];
+			for (int i = 0;i < customFieldDefinitions.Length; i++) {
+				createCustomField( customFieldDefinitions[i], i );
+			}
+		}
+		
+		private Control[] customFieldsNew;
+		private Control[] customFieldsUpdate;
+		
+		private const int customFieldHeight = 31;
+		private const int customFieldStartPositionNewIssue = 270;
+		private const int customFieldStartPositionUpdateIssue = 280;
+		private int currentCustomFieldPositionNewIssue = customFieldStartPositionNewIssue;
+		private int currentCustomFieldPositionUpdateIssue = customFieldStartPositionUpdateIssue;
+		private void createCustomField(RedmineSettings.CustomFieldDefinition definition, int index) {
+			//Window
+			this.Size = new System.Drawing.Size(this.Size.Width, this.Size.Height + customFieldHeight);
 			
+			//New Issues
+			this.issueDescription.Size = new System.Drawing.Size(this.issueDescription.Size.Width, this.issueDescription.Size.Height - customFieldHeight );
+			Label newIssueLabel = new System.Windows.Forms.Label();
+			newIssueLabel.AutoSize = true;
+			newIssueLabel.Location = new System.Drawing.Point(8, currentCustomFieldPositionNewIssue);
+			newIssueLabel.Size = new System.Drawing.Size(52, 13);
+			newIssueLabel.Anchor = 
+					((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left))));
+			newIssueLabel.Text = string.Concat(definition.name, ":");
+			this.tabPage1.Controls.Add(newIssueLabel);
+			
+			if (definition.fieldtype == RedmineSettings.CustomFieldDefinition.Fieldtype.FieldTypeList) {
+				ComboBox newInputElement = new System.Windows.Forms.ComboBox();
+				newInputElement.Anchor = 
+					((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+				newInputElement.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+				newInputElement.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+				newInputElement.FormattingEnabled = true;
+				newInputElement.Location = new System.Drawing.Point(65, currentCustomFieldPositionNewIssue);
+				newInputElement.Size = new System.Drawing.Size(479, 21);
+				newInputElement.Items.AddRange(definition.values);
+				
+				if (!definition.defaultValue.Equals("")) {
+					newInputElement.SelectedIndex = newInputElement.FindStringExact(definition.defaultValue);
+				}
+				
+				this.tabPage1.Controls.Add(newInputElement);
+				customFieldsNew[index] = newInputElement;
+			} else {
+				TextBox newInputElement = new System.Windows.Forms.TextBox();
+				newInputElement.Anchor = 
+					((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+				newInputElement.Location = new System.Drawing.Point(65, currentCustomFieldPositionNewIssue);
+				newInputElement.Size = new System.Drawing.Size(479, 20);
+				
+				newInputElement.Text = definition.defaultValue;
+				this.tabPage1.Controls.Add(newInputElement);
+				customFieldsNew[index] = newInputElement;
+			}
+			
+			currentCustomFieldPositionNewIssue += customFieldHeight;
+			
+			
+			//Update Issues
+			this.issueNote.Size = new System.Drawing.Size(this.issueNote.Size.Width, this.issueNote.Size.Height - customFieldHeight );
+			Label updateIssueLabel = new System.Windows.Forms.Label();
+			updateIssueLabel.AutoSize = true;
+			updateIssueLabel.Location = new System.Drawing.Point(8, currentCustomFieldPositionUpdateIssue);
+			updateIssueLabel.Size = new System.Drawing.Size(52, 13);
+			updateIssueLabel.Anchor = 
+					((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left))));
+			updateIssueLabel.Text = string.Concat(definition.name, ":");
+			this.tabPage2.Controls.Add(updateIssueLabel);
+			
+			if (definition.fieldtype == RedmineSettings.CustomFieldDefinition.Fieldtype.FieldTypeList) {
+				ComboBox updateInputElement = new System.Windows.Forms.ComboBox();
+				updateInputElement.Anchor = 
+					((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+				updateInputElement.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+				updateInputElement.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+				updateInputElement.FormattingEnabled = true;
+				updateInputElement.Location = new System.Drawing.Point(65, currentCustomFieldPositionUpdateIssue);
+				updateInputElement.Size = new System.Drawing.Size(479, 21);
+				updateInputElement.Items.AddRange(definition.values);
+				this.tabPage2.Controls.Add(updateInputElement);
+				customFieldsUpdate[index] = updateInputElement;
+			} else {
+				TextBox updateInputElement = new System.Windows.Forms.TextBox();
+				updateInputElement.Anchor = 
+					((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+				updateInputElement.Location = new System.Drawing.Point(65, currentCustomFieldPositionUpdateIssue);
+				updateInputElement.Size = new System.Drawing.Size(479, 20);
+				this.tabPage2.Controls.Add(updateInputElement);
+				customFieldsUpdate[index] = updateInputElement;
+			}
+			
+			currentCustomFieldPositionUpdateIssue += customFieldHeight;
+			/*
+			
+			this.issueNote = new System.Windows.Forms.TextBox();
+			// 
+			// issueNote
+			// 
+			this.issueNote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.issueNote.Location = new System.Drawing.Point(9, 238);
+			this.issueNote.Multiline = true;
+			this.issueNote.Name = "issueNote";
+			this.issueNote.Size = new System.Drawing.Size(526, 65);
+			this.issueNote.TabIndex = 15;
+			this.tabPage2.Controls.Add(this.issueNote);
+			;*/
 		}
 		
 		public void setFilesource(string filesource) {
@@ -258,6 +372,19 @@ namespace GreenshotRedmineUploader
 			this.oldissueStatus.SelectedIndex = this.oldissueStatus.FindStringExact(issue.Status != null ? issue.Status.Name : "No Change");
 			this.oldIssueTracker.SelectedIndex = this.oldIssueTracker.FindStringExact(issue.Tracker != null ? issue.Tracker.Name : "No Change");
         	
+			for (int i = 0;i < customFieldsUpdate.Length;i++) {
+				for (int y = 0;y < issue.CustomFields.Count;y++) {
+					if (issue.CustomFields[y].Id == customFieldDefinitions[i].id) {
+						if (issue.CustomFields[y].Values.Count > 0) {
+							customFieldsUpdate[i].Text = issue.CustomFields[y].Values[0].ToString();
+						} else {
+							customFieldsUpdate[i].Text = "";
+						} 
+						break;
+					}
+				}
+			}
+			
             this.Enabled = true;
         }
         
@@ -368,6 +495,21 @@ namespace GreenshotRedmineUploader
         		if (issueVersion.SelectedValue != null && (int)issueVersion.SelectedValue != 0) {
         			newIssue.FixedVersion = new IdentifiableName{Id = (int)issueVersion.SelectedValue};
         		}
+        		
+        		for (int i = 0;i < customFieldsNew.Length;i++) {
+        			CustomField item = new CustomField();
+        			item.Id = customFieldDefinitions[i].id;
+        			item.Multiple = false;
+        			item.Name = customFieldDefinitions[i].name;
+        			
+        			CustomFieldValue customFieldValue = new CustomFieldValue();
+        			customFieldValue.Info = customFieldsNew[i].Text;
+        			item.Values = new List<CustomFieldValue>();
+        			item.Values.Add(customFieldValue);
+        			newIssue.CustomFields = new List<CustomField>();
+        			newIssue.CustomFields.Add(item);
+				}
+        		
         		newIssue = Program.redmine.createIssue(newIssue); 
 
 				DialogResult messageBoxResult = 
@@ -413,7 +555,6 @@ namespace GreenshotRedmineUploader
         		if (this.issueNote.Text.Length > 0) {
         			updateIssue.Notes = this.issueNote.Text;
         		}
-        		
 
         		if (oldissuePriority.SelectedValue != null && (int)oldissuePriority.SelectedValue != 0 ) {
         			updateIssue.Priority = new IdentifiableName{Id = (int)oldissuePriority.SelectedValue};	
@@ -433,6 +574,30 @@ namespace GreenshotRedmineUploader
         		if (oldIssueTracker.SelectedValue != null && (int)oldIssueTracker.SelectedValue != 0) {
         			updateIssue.Tracker = new IdentifiableName{Id = (int)oldIssueTracker.SelectedValue};	
         		}
+        		
+        		if (updateIssue.CustomFields == null) {
+        			updateIssue.CustomFields = new List<CustomField>();
+        		}
+        		
+        		for (int i = 0;i < customFieldsUpdate.Length;i++) {
+        			CustomField item = new CustomField();
+        			item.Id = customFieldDefinitions[i].id;
+        			item.Multiple = false;
+        			item.Name = customFieldDefinitions[i].name;
+        			
+        			for (int y = 0;y < updateIssue.CustomFields.Count;y++) {
+        				if (updateIssue.CustomFields[y].Id == item.Id) {
+        					updateIssue.CustomFields.Remove(updateIssue.CustomFields[y]);
+        					break;
+        				}
+        			}
+        			
+        			CustomFieldValue customFieldValue = new CustomFieldValue();
+        			customFieldValue.Info = customFieldsUpdate[i].Text;
+        			item.Values = new List<CustomFieldValue>();
+        			item.Values.Add(customFieldValue);
+        			updateIssue.CustomFields.Add(item);
+				}
 
         		Program.redmine.updateIssue(updateIssue); 
 				

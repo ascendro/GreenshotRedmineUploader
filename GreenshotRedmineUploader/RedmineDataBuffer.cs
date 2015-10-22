@@ -85,6 +85,8 @@ namespace GreenshotRedmineUploader
 		public bool onlyImportOpenVersions;
 		public bool disableSSLVerification;
 		
+		public string customFields;
+		
 		public RedmineDataBuffer() {
 			projects = new SortedDictionary<string,int>();
 			priorities = new SortedDictionary<string,int>();
@@ -104,6 +106,7 @@ namespace GreenshotRedmineUploader
 			onlyImportOpenVersions = false;
 			disableSSLVerification = false;
 			defaultSubject = "";
+			customFields = "";
 		}
 		
 		private static string filename = "GreenshotRedmineUploader.data";

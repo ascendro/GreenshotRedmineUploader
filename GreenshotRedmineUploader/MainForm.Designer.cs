@@ -221,7 +221,7 @@ namespace GreenshotRedmineUploader
 			// btnNewIssueStart
 			// 
 			this.btnNewIssueStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnNewIssueStart.Location = new System.Drawing.Point(469, 309);
+			this.btnNewIssueStart.Location = new System.Drawing.Point(469, 300);
 			this.btnNewIssueStart.Name = "btnNewIssueStart";
 			this.btnNewIssueStart.Size = new System.Drawing.Size(75, 23);
 			this.btnNewIssueStart.TabIndex = 10;
@@ -273,7 +273,7 @@ namespace GreenshotRedmineUploader
 			this.issueDescription.Location = new System.Drawing.Point(11, 229);
 			this.issueDescription.Multiline = true;
 			this.issueDescription.Name = "issueDescription";
-			this.issueDescription.Size = new System.Drawing.Size(533, 63);
+			this.issueDescription.Size = new System.Drawing.Size(533, 65);
 			this.issueDescription.TabIndex = 9;
 			// 
 			// issueNote
@@ -284,7 +284,7 @@ namespace GreenshotRedmineUploader
 			this.issueNote.Location = new System.Drawing.Point(9, 238);
 			this.issueNote.Multiline = true;
 			this.issueNote.Name = "issueNote";
-			this.issueNote.Size = new System.Drawing.Size(526, 65);
+			this.issueNote.Size = new System.Drawing.Size(535, 67);
 			this.issueNote.TabIndex = 15;
 			// 
 			// issueSubject
@@ -351,7 +351,7 @@ namespace GreenshotRedmineUploader
 			this.tabControl1.Location = new System.Drawing.Point(15, 133);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(560, 364);
+			this.tabControl1.Size = new System.Drawing.Size(560, 366);
 			this.tabControl1.TabIndex = 16;
 			// 
 			// tabPage1
@@ -383,7 +383,7 @@ namespace GreenshotRedmineUploader
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(552, 338);
+			this.tabPage1.Size = new System.Drawing.Size(552, 340);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "New Issue";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -527,7 +527,7 @@ namespace GreenshotRedmineUploader
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(552, 338);
+			this.tabPage2.Size = new System.Drawing.Size(552, 340);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Attach to Issue";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -598,7 +598,7 @@ namespace GreenshotRedmineUploader
 			// oldissueUpload
 			// 
 			this.oldissueUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.oldissueUpload.Location = new System.Drawing.Point(460, 309);
+			this.oldissueUpload.Location = new System.Drawing.Point(469, 311);
 			this.oldissueUpload.Name = "oldissueUpload";
 			this.oldissueUpload.Size = new System.Drawing.Size(75, 23);
 			this.oldissueUpload.TabIndex = 14;
@@ -719,7 +719,7 @@ namespace GreenshotRedmineUploader
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(584, 499);
+			this.ClientSize = new System.Drawing.Size(584, 501);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.openFile);
 			this.Controls.Add(this.filesource);
@@ -731,7 +731,7 @@ namespace GreenshotRedmineUploader
 			this.Controls.Add(this.description);
 			this.Icon = global::GreenshotRedmineUploader.Resources.Icon;
 			this.Name = "MainForm";
-			this.Text = "Ascendro S.R.L - GreenshotRedmineUploader V0.0.3";
+			this.Text = "Ascendro S.R.L - GreenshotRedmineUploader V0.0.4";
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
