@@ -52,12 +52,18 @@ namespace GreenshotRedmineUploader
 			if (manager == null) {
 				try {
 					manager = new RedmineManager(buffer.host, buffer.apikey);
+					System.Net.ServicePointManager.ServerCertificateValidationCallback += new System.Net.Security.RemoteCertificateValidationCallback(bypassAllCertificateStuff);
 				} catch (Redmine.Net.Api.RedmineException e) {
 					MessageBox.Show(e.Message,"Connection Error.");
 					manager = null;
 				}
 			}
 			return manager;			
+		}
+		
+		private static bool bypassAllCertificateStuff(object sender, System.Security.Cryptography.X509Certificates.X509Certificate cert, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors error)
+		{
+		   return true;
 		}
 				
 		public bool syncWithRed() {
@@ -71,7 +77,9 @@ namespace GreenshotRedmineUploader
 				var parameters = new NameValueCollection {{"include", "memberships"}};
 				var currentUser = getManager().GetCurrentUser(parameters);				
 				foreach (var membership in currentUser.Memberships) {
-					buffer.projects.Add(membership.Project.Name,membership.Project.Id);            								
+					if (!buffer.projects.ContainsKey(membership.Project.Name)) {
+						buffer.projects.Add(membership.Project.Name,membership.Project.Id);
+				    }
 				}		
 				
 				

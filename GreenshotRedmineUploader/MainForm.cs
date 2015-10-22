@@ -33,12 +33,6 @@ using Redmine.Net.Api.Types;
 
 namespace GreenshotRedmineUploader
 {
-	 public class FontType
-    {
-        
-        public String Name;
-        public String DisplayName;
-    }
 	 
 	/// <summary>
 	/// Description of MainForm.
@@ -502,4 +496,12 @@ namespace GreenshotRedmineUploader
 			}
 		}
 	}
+	
+	
+	 public class FontType
+    {
+        
+        public String Name;
+        public String DisplayName;
+    }
 }

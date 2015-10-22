@@ -76,6 +76,8 @@ namespace GreenshotRedmineUploader
 			this.newIssueSync = new System.Windows.Forms.Button();
 			this.parentIssue = new System.Windows.Forms.ComboBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.oldIssueTracker = new System.Windows.Forms.ComboBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.labelOldIssueVersion = new System.Windows.Forms.Label();
 			this.labelOldIssueCategory = new System.Windows.Forms.Label();
 			this.oldIssueVersion = new System.Windows.Forms.ComboBox();
@@ -91,8 +93,6 @@ namespace GreenshotRedmineUploader
 			this.labelNoteDesc = new System.Windows.Forms.Label();
 			this.oldIssueSync = new System.Windows.Forms.Button();
 			this.oldIssue = new System.Windows.Forms.ComboBox();
-			this.oldIssueTracker = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
@@ -107,7 +107,7 @@ namespace GreenshotRedmineUploader
 			this.projectList.FormattingEnabled = true;
 			this.projectList.Location = new System.Drawing.Point(65, 6);
 			this.projectList.Name = "projectList";
-			this.projectList.Size = new System.Drawing.Size(391, 21);
+			this.projectList.Size = new System.Drawing.Size(382, 21);
 			this.projectList.TabIndex = 1;
 			this.projectList.SelectedIndexChanged += new System.EventHandler(this.projectList_SelectedIndexChanged);
 			// 
@@ -116,7 +116,7 @@ namespace GreenshotRedmineUploader
 			this.settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.settings.Location = new System.Drawing.Point(497, 12);
 			this.settings.Name = "settings";
-			this.settings.Size = new System.Drawing.Size(75, 23);
+			this.settings.Size = new System.Drawing.Size(78, 23);
 			this.settings.TabIndex = 30;
 			this.settings.Text = "Settings";
 			this.settings.UseVisualStyleBackColor = true;
@@ -162,9 +162,9 @@ namespace GreenshotRedmineUploader
 			// 
 			this.filename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.filename.Location = new System.Drawing.Point(74, 67);
+			this.filename.Location = new System.Drawing.Point(81, 67);
 			this.filename.Name = "filename";
-			this.filename.Size = new System.Drawing.Size(501, 20);
+			this.filename.Size = new System.Drawing.Size(494, 20);
 			this.filename.TabIndex = 10;
 			// 
 			// labelDesc
@@ -180,9 +180,9 @@ namespace GreenshotRedmineUploader
 			// 
 			this.description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.description.Location = new System.Drawing.Point(74, 97);
+			this.description.Location = new System.Drawing.Point(81, 97);
 			this.description.Name = "description";
-			this.description.Size = new System.Drawing.Size(501, 20);
+			this.description.Size = new System.Drawing.Size(494, 20);
 			this.description.TabIndex = 11;
 			// 
 			// labelFile
@@ -202,9 +202,9 @@ namespace GreenshotRedmineUploader
 			// 
 			this.filesource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.filesource.Location = new System.Drawing.Point(74, 41);
+			this.filesource.Location = new System.Drawing.Point(81, 41);
 			this.filesource.Name = "filesource";
-			this.filesource.Size = new System.Drawing.Size(417, 20);
+			this.filesource.Size = new System.Drawing.Size(410, 20);
 			this.filesource.TabIndex = 13;
 			// 
 			// openFile
@@ -212,7 +212,7 @@ namespace GreenshotRedmineUploader
 			this.openFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.openFile.Location = new System.Drawing.Point(497, 41);
 			this.openFile.Name = "openFile";
-			this.openFile.Size = new System.Drawing.Size(75, 23);
+			this.openFile.Size = new System.Drawing.Size(78, 23);
 			this.openFile.TabIndex = 14;
 			this.openFile.Text = "Open";
 			this.openFile.UseVisualStyleBackColor = true;
@@ -221,7 +221,7 @@ namespace GreenshotRedmineUploader
 			// btnNewIssueStart
 			// 
 			this.btnNewIssueStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnNewIssueStart.Location = new System.Drawing.Point(462, 309);
+			this.btnNewIssueStart.Location = new System.Drawing.Point(469, 309);
 			this.btnNewIssueStart.Name = "btnNewIssueStart";
 			this.btnNewIssueStart.Size = new System.Drawing.Size(75, 23);
 			this.btnNewIssueStart.TabIndex = 10;
@@ -250,7 +250,7 @@ namespace GreenshotRedmineUploader
 			this.issueAssignee.FormattingEnabled = true;
 			this.issueAssignee.Location = new System.Drawing.Point(65, 87);
 			this.issueAssignee.Name = "issueAssignee";
-			this.issueAssignee.Size = new System.Drawing.Size(391, 21);
+			this.issueAssignee.Size = new System.Drawing.Size(382, 21);
 			this.issueAssignee.TabIndex = 5;
 			// 
 			// issueTracker
@@ -273,7 +273,7 @@ namespace GreenshotRedmineUploader
 			this.issueDescription.Location = new System.Drawing.Point(11, 229);
 			this.issueDescription.Multiline = true;
 			this.issueDescription.Name = "issueDescription";
-			this.issueDescription.Size = new System.Drawing.Size(526, 63);
+			this.issueDescription.Size = new System.Drawing.Size(533, 63);
 			this.issueDescription.TabIndex = 9;
 			// 
 			// issueNote
@@ -409,9 +409,9 @@ namespace GreenshotRedmineUploader
 			// projectAllListUpdate
 			// 
 			this.projectAllListUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.projectAllListUpdate.Location = new System.Drawing.Point(462, 4);
+			this.projectAllListUpdate.Location = new System.Drawing.Point(453, 4);
 			this.projectAllListUpdate.Name = "projectAllListUpdate";
-			this.projectAllListUpdate.Size = new System.Drawing.Size(82, 23);
+			this.projectAllListUpdate.Size = new System.Drawing.Size(91, 23);
 			this.projectAllListUpdate.TabIndex = 22;
 			this.projectAllListUpdate.Text = "Get Data";
 			this.projectAllListUpdate.UseVisualStyleBackColor = true;
@@ -420,9 +420,9 @@ namespace GreenshotRedmineUploader
 			// projectVersionListUpdate
 			// 
 			this.projectVersionListUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.projectVersionListUpdate.Location = new System.Drawing.Point(462, 189);
+			this.projectVersionListUpdate.Location = new System.Drawing.Point(453, 189);
 			this.projectVersionListUpdate.Name = "projectVersionListUpdate";
-			this.projectVersionListUpdate.Size = new System.Drawing.Size(87, 23);
+			this.projectVersionListUpdate.Size = new System.Drawing.Size(91, 23);
 			this.projectVersionListUpdate.TabIndex = 21;
 			this.projectVersionListUpdate.Text = "Get Versions";
 			this.projectVersionListUpdate.UseVisualStyleBackColor = true;
@@ -431,9 +431,9 @@ namespace GreenshotRedmineUploader
 			// projectCategoryListUpdate
 			// 
 			this.projectCategoryListUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.projectCategoryListUpdate.Location = new System.Drawing.Point(462, 165);
+			this.projectCategoryListUpdate.Location = new System.Drawing.Point(453, 165);
 			this.projectCategoryListUpdate.Name = "projectCategoryListUpdate";
-			this.projectCategoryListUpdate.Size = new System.Drawing.Size(87, 23);
+			this.projectCategoryListUpdate.Size = new System.Drawing.Size(91, 23);
 			this.projectCategoryListUpdate.TabIndex = 20;
 			this.projectCategoryListUpdate.Text = "Get Categories";
 			this.projectCategoryListUpdate.UseVisualStyleBackColor = true;
@@ -446,7 +446,7 @@ namespace GreenshotRedmineUploader
 			this.issueVersion.FormattingEnabled = true;
 			this.issueVersion.Location = new System.Drawing.Point(65, 189);
 			this.issueVersion.Name = "issueVersion";
-			this.issueVersion.Size = new System.Drawing.Size(391, 21);
+			this.issueVersion.Size = new System.Drawing.Size(382, 21);
 			this.issueVersion.TabIndex = 19;
 			// 
 			// issueCategory
@@ -456,15 +456,15 @@ namespace GreenshotRedmineUploader
 			this.issueCategory.FormattingEnabled = true;
 			this.issueCategory.Location = new System.Drawing.Point(65, 165);
 			this.issueCategory.Name = "issueCategory";
-			this.issueCategory.Size = new System.Drawing.Size(391, 21);
+			this.issueCategory.Size = new System.Drawing.Size(382, 21);
 			this.issueCategory.TabIndex = 18;
 			// 
 			// projectAssigneeListUpdate
 			// 
 			this.projectAssigneeListUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.projectAssigneeListUpdate.Location = new System.Drawing.Point(462, 85);
+			this.projectAssigneeListUpdate.Location = new System.Drawing.Point(453, 85);
 			this.projectAssigneeListUpdate.Name = "projectAssigneeListUpdate";
-			this.projectAssigneeListUpdate.Size = new System.Drawing.Size(87, 23);
+			this.projectAssigneeListUpdate.Size = new System.Drawing.Size(91, 23);
 			this.projectAssigneeListUpdate.TabIndex = 2;
 			this.projectAssigneeListUpdate.Text = "Get Userlist";
 			this.projectAssigneeListUpdate.UseVisualStyleBackColor = true;
@@ -482,9 +482,9 @@ namespace GreenshotRedmineUploader
 			// newIssueSync
 			// 
 			this.newIssueSync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.newIssueSync.Location = new System.Drawing.Point(462, 138);
+			this.newIssueSync.Location = new System.Drawing.Point(453, 138);
 			this.newIssueSync.Name = "newIssueSync";
-			this.newIssueSync.Size = new System.Drawing.Size(87, 23);
+			this.newIssueSync.Size = new System.Drawing.Size(91, 23);
 			this.newIssueSync.TabIndex = 8;
 			this.newIssueSync.Text = "Sync Issues";
 			this.newIssueSync.UseVisualStyleBackColor = true;
@@ -499,7 +499,7 @@ namespace GreenshotRedmineUploader
 			this.parentIssue.FormattingEnabled = true;
 			this.parentIssue.Location = new System.Drawing.Point(65, 138);
 			this.parentIssue.Name = "parentIssue";
-			this.parentIssue.Size = new System.Drawing.Size(391, 21);
+			this.parentIssue.Size = new System.Drawing.Size(382, 21);
 			this.parentIssue.TabIndex = 7;
 			// 
 			// tabPage2
@@ -532,6 +532,27 @@ namespace GreenshotRedmineUploader
 			this.tabPage2.Text = "Attach to Issue";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
+			// oldIssueTracker
+			// 
+			this.oldIssueTracker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.oldIssueTracker.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.oldIssueTracker.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.oldIssueTracker.FormattingEnabled = true;
+			this.oldIssueTracker.Location = new System.Drawing.Point(65, 191);
+			this.oldIssueTracker.Name = "oldIssueTracker";
+			this.oldIssueTracker.Size = new System.Drawing.Size(479, 21);
+			this.oldIssueTracker.TabIndex = 24;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(6, 194);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(47, 13);
+			this.label1.TabIndex = 25;
+			this.label1.Text = "Tracker:";
+			// 
 			// labelOldIssueVersion
 			// 
 			this.labelOldIssueVersion.AutoSize = true;
@@ -557,7 +578,7 @@ namespace GreenshotRedmineUploader
 			this.oldIssueVersion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.oldIssueVersion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.oldIssueVersion.FormattingEnabled = true;
-			this.oldIssueVersion.Location = new System.Drawing.Point(63, 164);
+			this.oldIssueVersion.Location = new System.Drawing.Point(65, 164);
 			this.oldIssueVersion.Name = "oldIssueVersion";
 			this.oldIssueVersion.Size = new System.Drawing.Size(479, 21);
 			this.oldIssueVersion.TabIndex = 21;
@@ -569,7 +590,7 @@ namespace GreenshotRedmineUploader
 			this.oldIssueCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.oldIssueCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.oldIssueCategory.FormattingEnabled = true;
-			this.oldIssueCategory.Location = new System.Drawing.Point(63, 137);
+			this.oldIssueCategory.Location = new System.Drawing.Point(65, 137);
 			this.oldIssueCategory.Name = "oldIssueCategory";
 			this.oldIssueCategory.Size = new System.Drawing.Size(479, 21);
 			this.oldIssueCategory.TabIndex = 20;
@@ -592,7 +613,7 @@ namespace GreenshotRedmineUploader
 			this.oldissuePriority.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.oldissuePriority.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.oldissuePriority.FormattingEnabled = true;
-			this.oldissuePriority.Location = new System.Drawing.Point(63, 83);
+			this.oldissuePriority.Location = new System.Drawing.Point(65, 83);
 			this.oldissuePriority.Name = "oldissuePriority";
 			this.oldissuePriority.Size = new System.Drawing.Size(479, 21);
 			this.oldissuePriority.TabIndex = 12;
@@ -604,7 +625,7 @@ namespace GreenshotRedmineUploader
 			this.oldissueAssignee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.oldissueAssignee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.oldissueAssignee.FormattingEnabled = true;
-			this.oldissueAssignee.Location = new System.Drawing.Point(63, 56);
+			this.oldissueAssignee.Location = new System.Drawing.Point(65, 56);
 			this.oldissueAssignee.Name = "oldissueAssignee";
 			this.oldissueAssignee.Size = new System.Drawing.Size(479, 21);
 			this.oldissueAssignee.TabIndex = 13;
@@ -616,7 +637,7 @@ namespace GreenshotRedmineUploader
 			this.oldissueStatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.oldissueStatus.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.oldissueStatus.FormattingEnabled = true;
-			this.oldissueStatus.Location = new System.Drawing.Point(63, 110);
+			this.oldissueStatus.Location = new System.Drawing.Point(65, 110);
 			this.oldissueStatus.Name = "oldissueStatus";
 			this.oldissueStatus.Size = new System.Drawing.Size(479, 21);
 			this.oldissueStatus.TabIndex = 14;
@@ -625,7 +646,7 @@ namespace GreenshotRedmineUploader
 			// 
 			this.issueAssigneeListUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
-			this.issueAssigneeListUpdate.Location = new System.Drawing.Point(63, 33);
+			this.issueAssigneeListUpdate.Location = new System.Drawing.Point(65, 33);
 			this.issueAssigneeListUpdate.Name = "issueAssigneeListUpdate";
 			this.issueAssigneeListUpdate.Size = new System.Drawing.Size(479, 21);
 			this.issueAssigneeListUpdate.TabIndex = 7;
@@ -672,9 +693,9 @@ namespace GreenshotRedmineUploader
 			// oldIssueSync
 			// 
 			this.oldIssueSync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.oldIssueSync.Location = new System.Drawing.Point(474, 6);
+			this.oldIssueSync.Location = new System.Drawing.Point(469, 6);
 			this.oldIssueSync.Name = "oldIssueSync";
-			this.oldIssueSync.Size = new System.Drawing.Size(75, 23);
+			this.oldIssueSync.Size = new System.Drawing.Size(75, 21);
 			this.oldIssueSync.TabIndex = 8;
 			this.oldIssueSync.Text = "SyncSave";
 			this.oldIssueSync.UseVisualStyleBackColor = true;
@@ -689,31 +710,10 @@ namespace GreenshotRedmineUploader
 			this.oldIssue.FormattingEnabled = true;
 			this.oldIssue.Location = new System.Drawing.Point(65, 6);
 			this.oldIssue.Name = "oldIssue";
-			this.oldIssue.Size = new System.Drawing.Size(409, 21);
+			this.oldIssue.Size = new System.Drawing.Size(403, 21);
 			this.oldIssue.TabIndex = 7;
 			this.oldIssue.TextChanged += new System.EventHandler(this.OldIssueTextChanged);
 			this.oldIssue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OldIssueKeyPress);
-			// 
-			// oldIssueTracker
-			// 
-			this.oldIssueTracker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
-			this.oldIssueTracker.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.oldIssueTracker.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.oldIssueTracker.FormattingEnabled = true;
-			this.oldIssueTracker.Location = new System.Drawing.Point(65, 192);
-			this.oldIssueTracker.Name = "oldIssueTracker";
-			this.oldIssueTracker.Size = new System.Drawing.Size(479, 21);
-			this.oldIssueTracker.TabIndex = 24;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(6, 194);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(47, 13);
-			this.label1.TabIndex = 25;
-			this.label1.Text = "Tracker:";
 			// 
 			// MainForm
 			// 

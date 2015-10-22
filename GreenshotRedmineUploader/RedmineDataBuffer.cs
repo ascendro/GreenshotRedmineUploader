@@ -83,6 +83,7 @@ namespace GreenshotRedmineUploader
 		
 		public bool closeAfterUpload;	
 		public bool onlyImportOpenVersions;
+		public bool disableSSLVerification;
 		
 		public RedmineDataBuffer() {
 			projects = new SortedDictionary<string,int>();
@@ -101,6 +102,7 @@ namespace GreenshotRedmineUploader
 			apikey = "";
 			closeAfterUpload = true;
 			onlyImportOpenVersions = false;
+			disableSSLVerification = false;
 			defaultSubject = "";
 		}
 		

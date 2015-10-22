@@ -113,6 +113,8 @@ namespace GreenshotRedmineUploader
             
             this.redmineOnlyImportOpenVersions.Checked = Program.redmine.buffer.onlyImportOpenVersions;
             
+            this.disableSSLVerification.Checked = Program.redmine.buffer.disableSSLVerification;
+            
         }  
         
         private void storeData() {
@@ -145,6 +147,7 @@ namespace GreenshotRedmineUploader
             
             Program.redmine.buffer.closeAfterUpload = this.redmineCloseAfterUpload.Checked;
             Program.redmine.buffer.onlyImportOpenVersions = this.redmineOnlyImportOpenVersions.Checked;
+            Program.redmine.buffer.disableSSLVerification = this.disableSSLVerification.Checked;
         }
 
         private void redmineSync_Click(object sender, EventArgs e)
