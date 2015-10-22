@@ -234,7 +234,7 @@ namespace GreenshotRedmineUploader
         		this.oldissueAssignee.DataSource = issueAssigneeListBS;        	
 	        	this.oldissueAssignee.ValueMember = "Value";
 	            this.oldissueAssignee.DisplayMember = "Key";	            
-	            this.oldissueAssignee.SelectedIndex = this.oldissueAssignee.FindStringExact(issue.AssignedTo.Name);
+				this.oldissueAssignee.SelectedIndex = this.oldissueAssignee.FindStringExact(issue.AssignedTo != null ? issue.AssignedTo.Name : "No Change");
         	} catch (Exception) {
         		this.oldissueAssignee.DataSource = null;
         	}
@@ -244,7 +244,7 @@ namespace GreenshotRedmineUploader
         		this.oldIssueCategory.DataSource = issueCategoryListBS;        	
 	        	this.oldIssueCategory.ValueMember = "Value";
 	            this.oldIssueCategory.DisplayMember = "Key";	            
-	            this.oldIssueCategory.SelectedIndex = this.oldIssueCategory.FindStringExact(issue.Category.Name);
+				this.oldIssueCategory.SelectedIndex = this.oldIssueCategory.FindStringExact(issue.Category != null ? issue.Category.Name : "No Change");
         	} catch (Exception) {
         		this.oldIssueCategory.DataSource = null;
         	}
@@ -259,9 +259,9 @@ namespace GreenshotRedmineUploader
         		this.oldIssueVersion.DataSource = null;
         	}
         	
-        	this.oldissuePriority.SelectedIndex = this.oldissuePriority.FindStringExact(issue.Priority.Name);
-        	this.oldissueStatus.SelectedIndex = this.oldissueStatus.FindStringExact(issue.Status.Name);
-        	this.oldIssueTracker.SelectedIndex = this.oldIssueTracker.FindStringExact(issue.Tracker.Name);
+			this.oldissuePriority.SelectedIndex = this.oldissuePriority.FindStringExact(issue.Priority != null ? issue.Priority.Name : "No Change");
+			this.oldissueStatus.SelectedIndex = this.oldissueStatus.FindStringExact(issue.Status != null ? issue.Status.Name : "No Change");
+			this.oldIssueTracker.SelectedIndex = this.oldIssueTracker.FindStringExact(issue.Tracker != null ? issue.Tracker.Name : "No Change");
         	
             this.Enabled = true;
         }
