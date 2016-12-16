@@ -28,7 +28,7 @@ Thats it. The tool is ready to use.
 
 ## Used Library
 
-This tool is using the redmine-net-api (https://code.google.com/p/redmine-net-api/) - SVN Revision 118.
+This tool is using the redmine-net-api (https://github.com/zapadi/redmine-net-api) - SVN Revision 118.
 
 ## License
 
@@ -67,11 +67,11 @@ This tool is using the redmine-net-api (https://code.google.com/p/redmine-net-ap
  - Load all Datafields when data for update issue is fetched
  - Better text search on old issue combobox
  
- ### 0.0.4 
+### 0.0.4 
  
-  - Tracker in update issue
-  - Option to only show open versions
-  - Smaller fixes for empty fields
-  - Optional disabling of SSL check - in case of systems using non trusted cert roots
-  - Possibility to open an issue after uploading the image
-  - Implementation of custom fields (can't be automized as field definitions are only accessible as admin user in redmine)
+ - Tracker in update issue
+ - Option to only show open versions
+ - Smaller fixes for empty fields
+ - Optional disabling of SSL check - in case of systems using non trusted cert roots
+ - Possibility to open an issue after uploading the image
+ - Implementation of custom fields (can't be automized as field definitions are only accessible as admin user in redmine)
